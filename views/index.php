@@ -36,10 +36,16 @@
 				<input type="password" class="login-field" value="" placeholder="Password" id="login-pass">
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
-
+				
+				<div class= "control-group">
 				<a class="btn btn-primary btn-large btn-block" href="#">Login</a>
-				<br>
-				<a class="btn1 btn-primary btn-large btn-block" href="#">Register Now</a>
+				</div>
+				<div class= "control-group">
+				<a class="btn1 btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php">Register Now</a>
+				</div>
+				<div>
+				<a href="#"> Forgot Password?</a>
+				</div>
 							</div>
 		</div>
 	</div>
