@@ -7,7 +7,7 @@
     
     
     
-        <link rel="stylesheet" href="http://localhost/studentMarks/css/style.css">
+        <link rel="stylesheet" href="http://localhost/studentMarks/css/styleLogin.css">
 
     
     
