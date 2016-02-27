@@ -7,7 +7,12 @@
     </head>
     <body>    
         <form action="" class="register">
+        <div align="right">
+            <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
+            </div>
+
             <h1>Registration</h1>
+            
             <fieldset class="row1">
                 <legend>Account Details
                 </legend>
@@ -117,6 +122,7 @@
                 </p>
               </fieldset>
             <div><button class="button">Register</button></div>
+
         </form>
     </body>
 </html>
