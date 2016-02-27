@@ -20,9 +20,6 @@
                     <label>Email *
                     </label>
                     <input type="text"/>
-                    <label>Repeat email *
-                    </label>
-                    <input type="text"/>
                 </p>
                 <p>
                     <label>Password*
@@ -108,9 +105,11 @@
                     <input type="text" class="long"/>
                 </p>
                 <div class="infobox"><h4>Helpful Information</h4>
+                    <div class="infobox_text">
                     <p>1. Please use your University provided E-Mail ID for Registration.</p>
 					<p>2. Details which are not necessary during registration can be reset later.</p>
 					<p>3. Contact Administrator for any other enquiries.</p>
+                    </div>
                 </div>
             </fieldset>
             <fieldset class="row4">
