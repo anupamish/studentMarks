@@ -19,15 +19,15 @@
                 <p>
                     <label>Email *
                     </label>
-                    <input type="text" required/>
+                    <input type="text" required name="email"/>
                 </p>
                 <p>
                     <label>Password*
                     </label>
-                    <input type="text" required />
+                    <input type="text" required name="password"/>
                     <label>Repeat Password*
                     </label>
-                    <input type="text" required/>
+                    <input type="text" required name="rpassword"/>
                     <label class="obinfo">* obligatory fields
                     </label>
                 </p>
@@ -38,18 +38,18 @@
                 <p>
                     <label>First Name *
                     </label>
-                    <input type="text" class="long" required/>
+                    <input type="text" class="long" required name="fname"/>
                 </p>
 				<p>
                     <label>Last Name *
                     </label>
-                    <input type="text" class="long" required/>
+                    <input type="text" class="long" required name="lname"/>
                 </p>
                  <p>
                     <label>Gender </label>
-                    <input type="radio" name="gender" value="male" checked>
+                    <input type="radio" name="gender" id="male" name="male" checked>
                      <label class="gender">Male</label>
-                    <input type="radio" name="gender" value="female"> 
+                    <input type="radio" name="gender" id="female" name="female"> 
                     <label class="gender">Female</label>
                 </p>
 				<p>
@@ -67,21 +67,21 @@
                     <label>School *
                     </label>
                     <select required>
-                        <option value="1">School of Engineering
+                        <option value="soe">School of Engineering
                         </option>
-                        <option value="2">School of Vocational Studies and Applied Sciences
+                        <option value="sovs">School of Vocational Studies and Applied Sciences
                         </option>
-                        <option value="3">School of Biotechnology
+                        <option value="sobt">School of Biotechnology
                         </option>
-                        <option value="4">School of Management
+                        <option value="som">School of Management
                         </option>
-                        <option value="5">School of Information and Communication Technology
+                        <option value="sict">School of Information and Communication Technology
                         </option>
-                        <option value="6">School of Law, Justice and Governance
+                        <option value="sol">School of Law, Justice and Governance
                         </option>
-                        <option value="7">School of Buddhist Studies and Civilization
+                        <option value="sobsc">School of Buddhist Studies and Civilization
                         </option>
-                        <option value="8">School of Humanities and Social Sciences
+                        <option value="sohss">School of Humanities and Social Sciences
                         </option>
                      </select>
                 </p>
@@ -89,13 +89,13 @@
                     <label>Designation *
                     </label>
                     <select required>
-                        <option value="1">Professor
+                        <option value="pro">Professor
                         </option>
-                        <option value="2">Assistant Professor
+                        <option value="apro">Assistant Professor
                         </option>
-                        <option value="3">Associate Professor
+                        <option value="aspro">Associate Professor
                         </option>
-                        <option value="4">Research/Faculty Associate
+                        <option value="rfa">Research/Faculty Associate
                         </option>
                      </select>
                 </p>

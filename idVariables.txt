@@ -1,0 +1,18 @@
+email --> "User E-Mail ID"
+password --> "User Password"
+rpassword --> "User Password Repeat"
+fname --> First Name
+lname --> Last Name
+male, female --> Gender
+pro --> Professor
+apro --> Assistant Professor
+aspro --> Associate Professor
+rfa --> Research/Faculty Associate
+soe --> School of Engineering
+sovs --> School of Vocational Studies
+sobt --> School of Biotechnology
+som --> School of Management
+sict --> School of ICT
+sol --> School of Law
+sobsc --> School of Buddhist Studies
+sohss --> School of Humanities
