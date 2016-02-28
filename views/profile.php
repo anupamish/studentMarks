@@ -1,12 +1,21 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+?>
+<?php
+// Section of code to fetch all the profile data.
 $username = $_SESSION['username'];
-$sql_query = "SELECT firstName, lastName FROM users WHERE email='$username'";
+$sql_query = "SELECT * FROM users WHERE email='$username'";
 $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
+$email = $rows['email'];
+$school= $rows['school'];
+$designation= $rows['designation'];
+$officeNumber = $rows['officeNumber'];
+$gender = $rows['gender'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +28,7 @@ $lname = $rows['lastName'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Student Result Processing System</title>
+    <title>Profile: <?php echo $fname." ".$lname;?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/studentMarks/sideBar/css/bootstrap.min.css" rel="stylesheet">
@@ -65,12 +74,12 @@ $lname = $rows['lastName'];
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome <?php echo $fname." ".$lname;?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
+ <!--                       <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a> -->
                         </li>
                     </ul>
                 </li>
@@ -78,7 +87,7 @@ $lname = $rows['lastName'];
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                     <li class="active">
                         <a href="index.html" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
@@ -88,7 +97,7 @@ $lname = $rows['lastName'];
                     <li>
                         <a href="tables.html"><i class="fa fa-file-excel-o"></i> Exams</a>
                     </li>
-                                  <li>
+                    <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
@@ -104,7 +113,7 @@ $lname = $rows['lastName'];
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-			<h1> My Page</h3>
+			<h1><?php echo $fname." ".$lname;?></h3>
 			<br>
 			<br>
 			<br>
