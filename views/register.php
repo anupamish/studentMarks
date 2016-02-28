@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="http://localhost/studentMarks/css/styleRegister.css"/>
     </head>
     <body>    
-        <form action="http://localhost/studentMarks/phpIncludes/formRegister.php" class="register" method="post">
+        <form action="http://localhost/studentMarks/phpIncludes/registerForm.php" class="register" method="post">
         <div align="right">
             <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
             </div>
@@ -102,7 +102,7 @@
 				<p>
                     <label>Office Number
                     </label>
-                    <input type="text" class="long" name="officeNum"/>
+                    <input type="text" class="long" name="officeNumber"/>
                 </p>
                 <div class="infobox"><h4>Helpful Information</h4>
                     <div class="infobox_text">
@@ -116,7 +116,7 @@
                 <legend>Terms and Mailing
                 </legend>
                 <p class="agreement">
-                    <input type="checkbox" value=""/>
+                    <input type="checkbox" value="" required/>
                     <label>*  I accept the <a href="#">Terms and Conditions</a></label>
                 </p>
               </fieldset>
