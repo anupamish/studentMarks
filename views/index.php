@@ -9,6 +9,7 @@
   <body>
 
     <body>
+    <form action="http://localhost/studentMarks/phpIncludes/loginAction.php" method="post">
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
@@ -17,21 +18,22 @@
 			<div class="login-form">
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
-
+			
 			<div class="login-form">
 				<div class="control-group">
-				<input type="text" class="login-field" value="" placeholder="Username" id="login-name">
+				<input type="text" class="login-field" value="" placeholder="Username" id="username">
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field" value="" placeholder="Password" id="login-pass">
+				<input type="password" class="login-field" value="" placeholder="Password" id="password">
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
 				
 				<div class= "control-group">
-				<a class="btn btn-primary btn-large btn-block" href="#">Login</a>
+				<input type="button" value="Log In" name="submit" class="btn btn-primary btn-large btn-block" >
 				</div>
+               
 				<div class= "control-group">
 				<a class="btn1 btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php">Register Now</a>
 				</div>
@@ -41,6 +43,7 @@
 							</div>
 		</div>
 	</div>
+     </form>
    </body>
     
     

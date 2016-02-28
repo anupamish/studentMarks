@@ -24,10 +24,10 @@
                 <p>
                     <label>Password*
                     </label>
-                    <input type="text" required name="password"/>
+                    <input type="password" required name="password"/>
                     <label>Repeat Password*
                     </label>
-                    <input type="text" required name="rpassword"/>
+                    <input type="password" required name="rpassword"/>
                     <label class="obinfo">* obligatory fields
                     </label>
                 </p>
