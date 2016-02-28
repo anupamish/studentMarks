@@ -145,12 +145,12 @@ td {padding:5px; }
               <td><select name="branch" class="demoInputBox">
                 <option value="">-------Select Branch-------</option>
                 </select></td>
-                <td><label>Session:</label></td>
-              <td><select name="session" class="demoInputBox">
-                <option value="">-------Select Session-------</option>
+                <td><label>Subject:</label></td>
+              <td><select name="subject" class="demoInputBox">
+                <option value="">-------Select Subject-------</option>
                 </select></td>
                 <td><div class= "control-group">
-                <button type="submit" onclick=""<?php echo testfun(); ?>"" class="btn btn-primary btn-large btn-block">Show</button>
+                <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
                 </div></td>
             </tr>
           </tbody>
@@ -178,8 +178,8 @@ td {padding:5px; }
                 <th></th>
                 <th></th>
                 <th>Mid-term Marks</th>
-                <th>End-term Marks</th>
                 <th>Mid-term Marks</th>
+                <th>End-term Marks</th>
                 <th>End-term Marks</th>
 
             </tr>
@@ -187,11 +187,12 @@ td {padding:5px; }
 
         <tbody>
         <?php
-        function populateTable(){
+
+        
              $sqlTable = "SELECT regNo,stuFirstName,stuLastName,oddMidMarks,oddEndMarks,evenMidMarks,evenEndMarks FROM student";
-            $resultTable = $link->query($sqlTable);
-            $row1= mysqli_fetch_array($resultTable);
-            if (mysqli_num_rows($resultTable) > 0) {
+             global $link;
+                $resultTable = $link -> query($sqlTable);           
+              if (mysqli_num_rows($resultTable) > 0) {
                while($row2 = mysqli_fetch_array($resultTable)) {
                 $reg= $row2['regNo'];
                 $sfname =$row2['stuFirstName'];
@@ -203,16 +204,16 @@ td {padding:5px; }
         echo "<tr>";
          echo "<td>"."<center>".$reg."</center>"."</td>";
         echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
-        echo "<td>" .$omidmark."</td>";
-        echo "<td>".$oendmark."</td>";
-        echo "<td>".$emidmark."</td>";
-        echo "<td>".$eendmark."</td>";
+        echo "<td>"."<center>".$omidmark."</center>"."</td>";
+        echo "<td>"."<center>".$oendmark."</center>"."</td>";
+        echo "<td>"."<center>".$emidmark."</center>"."</td>";
+        echo "<td>"."<center>".$eendmark."</center>"."</td>";
         echo "</tr>";
     }
 }else {
       echo "No rows found!";
 }
-}
+
 ?>
         </tbody>
 
