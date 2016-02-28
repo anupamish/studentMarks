@@ -47,9 +47,9 @@
                 </p>
                  <p>
                     <label>Gender </label>
-                    <input type="radio" name="gender" id="male" name="male" checked>
+                    <input type="radio" name="gender" value="male" checked>
                      <label class="gender">Male</label>
-                    <input type="radio" name="gender" id="female" name="female"> 
+                    <input type="radio" name="gender" value="female"> 
                     <label class="gender">Female</label>
                 </p>
 				<p>
@@ -66,7 +66,7 @@
                 <p>
                     <label>School *
                     </label>
-                    <select required>
+                    <select name="school" required>
                         <option value="soe">School of Engineering
                         </option>
                         <option value="sovs">School of Vocational Studies and Applied Sciences
@@ -88,7 +88,7 @@
 				<p>
                     <label>Designation *
                     </label>
-                    <select required>
+                    <select name="designation" required>
                         <option value="pro">Professor
                         </option>
                         <option value="apro">Assistant Professor
@@ -102,7 +102,7 @@
 				<p>
                     <label>Office Number
                     </label>
-                    <input type="text" class="long"/>
+                    <input type="text" class="long" name="officeNumber"/>
                 </p>
                 <div class="infobox"><h4>Helpful Information</h4>
                     <div class="infobox_text">
@@ -116,11 +116,11 @@
                 <legend>Terms and Mailing
                 </legend>
                 <p class="agreement">
-                    <input type="checkbox" value=""/>
+                    <input type="checkbox" value="" required/>
                     <label>*  I accept the <a href="#">Terms and Conditions</a></label>
                 </p>
               </fieldset>
-            <div><button class="button">Register</button></div>
+            <div><button class="button" value="submit">Register</button></div>
 
         </form>
     </body>
