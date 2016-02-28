@@ -65,15 +65,15 @@ $gender = $rows['gender'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Student Result Processing System</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/views/landingPageMain.php">Student Result Processing System</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome <?php echo $fname." ".$lname;?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome <?php echo $fname." ".$lname;?> </a>
+                    <!--<ul class="dropdown-menu">-->
  <!--                       <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
@@ -87,8 +87,8 @@ $gender = $rows['gender'];
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                     <li class="active">
-                        <a href="index.html" ><i class="fa fa-book"></i>
+                     <li >
+                        <a href="http://localhost/studentMarks/views/landingPageMain.php" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
                     <li>
@@ -97,7 +97,7 @@ $gender = $rows['gender'];
                     <li>
                         <a href="tables.html"><i class="fa fa-file-excel-o"></i> Exams</a>
                     </li>
-                    <li>
+                    <li class="active">
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
@@ -114,29 +114,53 @@ $gender = $rows['gender'];
         <div id="page-wrapper">
 			<div id="container-fluid">
 			<h1><?php echo $fname." ".$lname;?></h3>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			 <form action="profile.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+    <table width="90%" border="0" cellspacing="0" cellpadding="6">
+      <tr>
+        <td width="20%" align="right">First Name:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $fname; ?>" />
+        </label></td>
+      </tr>
+      <tr>
+        <td width="20%" align="right">Last Name:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $lname; ?>" />
+        </label></td>
+      </tr>
+      <tr>
+        <td width="20%" align="right">E-Mail:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $email; ?>" />
+        </label></td>
+      </tr>
+       <tr>
+        <td width="20%" align="right">Designation:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $designation; ?>" />
+        </label></td>
+      </tr>
+       <tr>
+        <td width="20%" align="right">Office Number:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $officeNumber; ?>" />
+        </label></td>
+      </tr>
+      
+      <tr>
+        <td align="right">New Profile Picture:</td>
+        <td><label>
+          <input type="file" name="fileField" id="fileField" />
+        </label></td>
+      </tr>      
+      <tr>
+        <td>&nbsp;</td>
+        <td><label>
+         <input type="submit" name="button" id="button" value="Make Changes" />
+        </label></td>
+      </tr>
+    </table>
+    </form>
 			
 			</div>
           
