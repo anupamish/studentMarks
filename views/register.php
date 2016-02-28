@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="http://localhost/studentMarks/css/styleRegister.css"/>
     </head>
     <body>    
-        <form action="http://localhost/studentMarks/phpIncludes/registerForm.php" class="register" method="post">
+        <form action="http://localhost/studentMarks/phpIncludes/formRegister.php" class="register" method="post">
         <div align="right">
             <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
             </div>
@@ -47,9 +47,9 @@
                 </p>
                  <p>
                     <label>Gender </label>
-                    <input type="radio" name="gender" id="male" name="male" checked>
+                    <input type="radio" name="gender" value="male" checked>
                      <label class="gender">Male</label>
-                    <input type="radio" name="gender" id="female" name="female"> 
+                    <input type="radio" name="gender" value="female"> 
                     <label class="gender">Female</label>
                 </p>
 				<p>
@@ -66,7 +66,7 @@
                 <p>
                     <label>School *
                     </label>
-                    <select required>
+                    <select required name="school">
                         <option value="soe">School of Engineering
                         </option>
                         <option value="sovs">School of Vocational Studies and Applied Sciences
@@ -88,7 +88,7 @@
 				<p>
                     <label>Designation *
                     </label>
-                    <select required>
+                    <select required name= "designation">
                         <option value="pro">Professor
                         </option>
                         <option value="apro">Assistant Professor
@@ -102,7 +102,7 @@
 				<p>
                     <label>Office Number
                     </label>
-                    <input type="text" class="long"/>
+                    <input type="text" class="long" name="officeNum"/>
                 </p>
                 <div class="infobox"><h4>Helpful Information</h4>
                     <div class="infobox_text">
