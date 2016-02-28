@@ -7,6 +7,7 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +40,13 @@ $lname = $rows['lastName'];
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+       .frmDronpDown {border: 1px solid #F0F0F0;background-color:#C8EEFD;margin: 2px 0px;padding:20px;}
+.demoInputBox {padding: 10px;border: #F0F0F0 1px solid;border-radius: 4px;background-color: #FFF;width: 100%;}
+.row{padding-bottom:5px;}
+th { text-align: center;}
+td {padding:5px; }
+    </style>
 
 </head>
 
@@ -78,11 +86,11 @@ $lname = $rows['lastName'];
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="http://localhost/studentMarks/views/landingPageMain.php" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
@@ -103,38 +111,115 @@ $lname = $rows['lastName'];
         </nav>
 
         <div id="page-wrapper">
-			<div id="container-fluid">
-			<h1> My Page</h3>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			
-			</div>
-          
+            <div id="container-fluid">
+            <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class=".table-striped">
+          <tbody>
+            <tr>
+              <td><label>School:
+                    </label></td>
+              <td><select required name="school" class = "demoInputBox" onChange="getState(this.value);">
+                        <option>-------Select College-------</option>
+                        <option value="soe">School of Engineering
+                        </option>
+                        <option value="sovs">School of Vocational Studies and Applied Sciences
+                        </option>
+                        <option value="sobt">School of Biotechnology
+                        </option>
+                        <option value="som">School of Management
+                        </option>
+                        <option value="sict">School of Information and Communication Technology
+                        </option>
+                        <option value="sol">School of Law, Justice and Governance
+                        </option>
+                        <option value="sobsc">School of Buddhist Studies and Civilization
+                        </option>
+                        <option value="sohss">School of Humanities and Social Sciences
+                        </option>
+                     </select></td>
+                    <td><label>Branch:</label></td>
+              <td><select name="branch" class="demoInputBox">
+                <option value="">-------Select Branch-------</option>
+                </select></td>
+                <td><label>Session:</label></td>
+              <td><select name="session" class="demoInputBox">
+                <option value="">-------Select Session-------</option>
+                </select></td>
+                <td><div class= "control-group">
+                <button type="submit" class="btn btn-primary btn-large btn-block" href="#">Show</button>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-               
 
-          
+    <table class="table table-bordered">
+
+        <thead>
+
+            <tr>
+
+              <th>Registration No.</th>  
+              <th>Student Name</th>
+              <th colspan="2" scope='colgroup'>Odd Semester Result</th>
+              <th colspan="2" scope='colgroup'>Even Semester Result</th>
+
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Mid-term Marks</th>
+                <th>End-term Marks</th>
+                <th>Mid-term Marks</th>
+                <th>End-term Marks</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>12ics039</td>
+                <td>Shubham Shukla</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+
+            </tr>
+
+            <tr>
+
+            </tr>
+
+        </tbody>
+
+    </table>    
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+    <br>   
+            </div>
             <!-- /.container-fluid -->
 
         </div>

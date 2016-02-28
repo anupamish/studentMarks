@@ -92,7 +92,7 @@ $gender = $rows['gender'];
  Courses</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-graduation-cap"></i> Students</a>
+                        <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
                         <a href="tables.html"><i class="fa fa-file-excel-o"></i> Exams</a>
