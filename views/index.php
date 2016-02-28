@@ -38,7 +38,7 @@
 				<a class="btn1 btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php">Register Now</a>
 				</div>
 				<div>
-				<a href="http://localhost/studentMarks/phpIncludes/forgetPassword.php"> Forgot Password?</a>
+				<a href="http://localhost/studentMarks/views/forgetPassword.php"> Forgot Password?</a>
 				</div>
 							</div></form>
 		</div>
