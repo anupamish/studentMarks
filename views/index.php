@@ -2,16 +2,8 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Login into Student Result Processing System</title>
-    
-    
-    
-    
+    <title>Login into Student Result Processing System</title>   
         <link rel="stylesheet" href="http://localhost/studentMarks/css/styleLogin.css">
-
-    
-    
-    
   </head>
 
   <body>
