@@ -5,7 +5,7 @@ $sql_query="INSERT INTO
 			 VALUES ('".$_REQUEST['email']."','".$_REQUEST['password']."','".$_REQUEST['fname']."','".$_REQUEST['lname'].			"','".$_REQUEST['school']."','".$_REQUEST['designation']."','".$_REQUEST['officeNumber']."','".$_REQUEST['gender']."')";
 $res = $link->query($sql_query);
 if($res){
-echo "Record successfully inserted";
+header("Location:http://localhost/studentMarks/views/index.php");
 }else{
 echo "There is some problem in inserting record";
 }
