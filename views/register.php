@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="http://localhost/studentMarks/css/styleRegister.css"/>
     </head>
     <body>    
-        <form action="" class="register">
+        <form action="http://localhost/studentMarks/phpIncludes/registerForm.php" class="register" method="post">
         <div align="right">
             <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
             </div>
