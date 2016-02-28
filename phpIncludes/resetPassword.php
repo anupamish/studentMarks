@@ -36,7 +36,7 @@ if (isset($_POST['email'])){
     //If the message is sent successfully, display sucess message otherwise display an error message.
     if($sentMail)
     {
-        echo "<span style='color: #ff0000;'> Your Password Has Been Sent To Your Email Address.</span>";
+      header("Location:http://localhost/studentMarks/views/recoverPasswordSuccess.php");
     }
         else
         {
