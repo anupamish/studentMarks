@@ -113,49 +113,94 @@ $gender = $rows['gender'];
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-			<h1><?php echo $fname." ".$lname;?></h3>
+			<h1><?php echo $fname." ".$lname;?></h1>
+            
+            <img align="middle" src="#" width="132" height="132">
+        
 			 <form action="profile.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
     <table width="90%" border="0" cellspacing="0" cellpadding="6">
       <tr>
-        <td width="20%" align="right">First Name:</td>
+        <td width="20%" align="left">First Name:</td>
         <td width="80%"><label>
-          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $fname; ?>" />
-        </label></td>
-      </tr>
-      <tr>
-        <td width="20%" align="right">Last Name:</td>
-        <td width="80%"><label>
-          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $lname; ?>" />
-        </label></td>
-      </tr>
-      <tr>
-        <td width="20%" align="right">E-Mail:</td>
-        <td width="80%"><label>
-          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $email; ?>" />
-        </label></td>
-      </tr>
-       <tr>
-        <td width="20%" align="right">Designation:</td>
-        <td width="80%"><label>
-          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $designation; ?>" />
-        </label></td>
-      </tr>
-       <tr>
-        <td width="20%" align="right">Office Number:</td>
-        <td width="80%"><label>
-          <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $officeNumber; ?>" />
+          <input align="left" name="product_name" type="text" name="fname" size="64" value="<?php echo $fname; ?>" />
         </label></td>
       </tr>
       
       <tr>
-        <td align="right">New Profile Picture:</td>
+        <td width="20%" align="left"">Last Name:</td>
+        <td width="80%"><label>
+          <input align="left" name="product_name" type="text" id="lname" size="64" value="<?php echo $lname; ?>" />
+        </label></td>
+      </tr>
+      
+      <tr>
+        <td width="20%" align="left">E-Mail:</td>
+        <td width="80%"><label>
+          <input name="product_name" type="text" id="email" size="64" value="<?php echo $email; ?>" />
+        </label></td>
+      </tr>
+      
+       <tr>
+        <td align="left">Designation</td>
+        <td><select name="designation" id="designation">
+          <option value="<?php echo $designation; ?>"><?php echo $designation; ?></option>
+         <option value="pro">Professor
+                        </option>
+                        <option value="apro">Assistant Professor
+                        </option>
+                        <option value="aspro">Associate Professor
+                        </option>
+                        <option value="rfa">Research/Faculty Associate
+                        </option>
+          </select></td>
+      </tr>
+      
+      <tr>
+        <td align="left">School</td>
+        <td><select name="designation" id="designation">
+          <option value="<?php echo $school; ?>"><?php echo $school; ?>
+          </option>
+             <option value="soe">School of Engineering
+                        </option>
+                        <option value="sovs">School of Vocational Studies and Applied Sciences
+                        </option>
+                        <option value="sobt">School of Biotechnology
+                        </option>
+                        <option value="som">School of Management
+                        </option>
+                        <option value="sict">School of Information and Communication Technology
+                        </option>
+                        <option value="sol">School of Law, Justice and Governance
+                        </option>
+                        <option value="sobsc">School of Buddhist Studies and Civilization
+                        </option>
+                        <option value="sohss">School of Humanities and Social Sciences
+                        </option>
+          </select></td>
+      </tr>
+      
+       <tr>
+        <td width="20%" align="left">Office Number:</td>
+        <td width="80%"><label>
+          <input name="officeNumber" type="text" id="officeNumber" size="64" value="<?php echo $officeNumber; ?>" />
+        </label></td>
+      </tr>
+       <tr>
+        <td width="20%" align="left">Gender:</td>
+        <td width="80%"><label>
+          <input name="gender" type="radio" value="<?php echo $gender; ?>" /> <?php echo $gender?></label>
+        </td>
+      </tr>
+      <tr>
+        <td align="left">New Profile Picture:</td>
         <td><label>
           <input type="file" name="fileField" id="fileField" />
         </label></td>
-      </tr>      
+      </tr> 
+           
       <tr>
         <td>&nbsp;</td>
-        <td><label>
+        <td ><label>
          <input type="submit" name="button" id="button" value="Make Changes" />
         </label></td>
       </tr>
