@@ -19,15 +19,15 @@
                 <p>
                     <label>Email *
                     </label>
-                    <input type="text"/>
+                    <input type="text" required/>
                 </p>
                 <p>
                     <label>Password*
                     </label>
-                    <input type="text"/>
+                    <input type="text" required />
                     <label>Repeat Password*
                     </label>
-                    <input type="text"/>
+                    <input type="text" required/>
                     <label class="obinfo">* obligatory fields
                     </label>
                 </p>
@@ -38,12 +38,12 @@
                 <p>
                     <label>First Name *
                     </label>
-                    <input type="text" class="long"/>
+                    <input type="text" class="long" required/>
                 </p>
 				<p>
                     <label>Last Name *
                     </label>
-                    <input type="text" class="long"/>
+                    <input type="text" class="long" required/>
                 </p>
                  <p>
                     <label>Gender </label>
@@ -66,7 +66,7 @@
                 <p>
                     <label>School *
                     </label>
-                    <select>
+                    <select required>
                         <option value="1">School of Engineering
                         </option>
                         <option value="2">School of Vocational Studies and Applied Sciences
@@ -88,7 +88,7 @@
 				<p>
                     <label>Designation *
                     </label>
-                    <select>
+                    <select required>
                         <option value="1">Professor
                         </option>
                         <option value="2">Assistant Professor
