@@ -1,3 +1,13 @@
+<?php
+session_start();
+include ("../phpIncludes/connectMySQL.php");
+$username = $_SESSION['username'];
+$sql_query = "SELECT firstName, lastName FROM users WHERE email='$username'";
+$result = $link->query($sql_query);
+$rows= mysqli_fetch_array($result);
+$fname = $rows['firstName'];
+$lname = $rows['lastName'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,14 +63,14 @@
                 
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome User <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome <?php echo $fname." ".$lname;?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>

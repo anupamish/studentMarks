@@ -18,20 +18,20 @@
 			<div class="login-form">
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
-			
+			<form action="http://localhost/studentMarks/phpIncludes/loginAction" method="post">
 			<div class="login-form">
 				<div class="control-group">
-				<input type="text" class="login-field" value="" placeholder="Username" id="username">
+				<input type="text" class="login-field" value="" placeholder="Username" name="username" required>
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field" value="" placeholder="Password" id="password">
+				<input type="password" class="login-field" value="" placeholder="Password" name="password" required>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
 				
 				<div class= "control-group">
-				<input type="button" value="Log In" name="submit" class="btn btn-primary btn-large btn-block" >
+				<button type="submit" class="btn btn-primary btn-large btn-block" href="#">Login</button>
 				</div>
                
 				<div class= "control-group">
@@ -40,10 +40,10 @@
 				<div>
 				<a href="#"> Forgot Password?</a>
 				</div>
-							</div>
+							</div></form>
 		</div>
 	</div>
-     </form>
+     
    </body>
     
     
