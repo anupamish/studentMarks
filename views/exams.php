@@ -1,21 +1,12 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
-?>
-<?php
-// Section of code to fetch all the profile data.
 $username = $_SESSION['username'];
-$sql_query = "SELECT * FROM users WHERE email='$username'";
+$sql_query = "SELECT firstName, lastName FROM users WHERE email='$username'";
 $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
-$email = $rows['email'];
-$school= $rows['school'];
-$designation= $rows['designation'];
-$officeNumber = $rows['officeNumber'];
-$gender = $rows['gender'];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +19,7 @@ $gender = $rows['gender'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profile: <?php echo $fname." ".$lname;?></title>
+    <title>Student Result Processing System</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/studentMarks/sideBar/css/bootstrap.min.css" rel="stylesheet">
@@ -73,34 +64,34 @@ $gender = $rows['gender'];
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome <?php echo $fname." ".$lname;?> </a>
-                    <!--<ul class="dropdown-menu">-->
- <!--                       <li>
+                 <!--   <ul class="dropdown-menu">
+                        <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a> -->
+                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                     <li >
+                    <li>
                         <a href="http://localhost/studentMarks/views/landingPageMain.php" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
                     <li>
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
                     </li>
-                    <li class="active">
+                                  <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li>
+                        <li  >
                         <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Activity Log</a>
                     </li>
                                                 <li>
@@ -112,102 +103,33 @@ $gender = $rows['gender'];
         </nav>
 
         <div id="page-wrapper">
-			<div id="container-fluid">
-			<h1><?php echo $fname." ".$lname;?></h1>
+            <div id="container-fluid">
+            <h1> Exam Page</h3>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             
-            <img align="middle" src="#" width="132" height="132">
-        
-			 <form action="profile.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
-    <table width="90%" border="0" cellspacing="0" cellpadding="6">
-      <tr>
-        <td width="20%" align="left">First Name:</td>
-        <td width="80%"><label>
-          <input align="left" name="product_name" type="text" name="fname" size="64" value="<?php echo $fname; ?>" />
-        </label></td>
-      </tr>
-      
-      <tr>
-        <td width="20%" align="left"">Last Name:</td>
-        <td width="80%"><label>
-          <input align="left" name="product_name" type="text" id="lname" size="64" value="<?php echo $lname; ?>" />
-        </label></td>
-      </tr>
-      
-      <tr>
-        <td width="20%" align="left">E-Mail:</td>
-        <td width="80%"><label>
-          <input name="product_name" type="text" id="email" size="64" value="<?php echo $email; ?>" />
-        </label></td>
-      </tr>
-      
-       <tr>
-        <td align="left">Designation</td>
-        <td><select name="designation" id="designation">
-          <option value="<?php echo $designation; ?>"><?php echo $designation; ?></option>
-         <option value="pro">Professor
-                        </option>
-                        <option value="apro">Assistant Professor
-                        </option>
-                        <option value="aspro">Associate Professor
-                        </option>
-                        <option value="rfa">Research/Faculty Associate
-                        </option>
-          </select></td>
-      </tr>
-      
-      <tr>
-        <td align="left">School</td>
-        <td><select name="designation" id="designation">
-          <option value="<?php echo $school; ?>"><?php echo $school; ?>
-          </option>
-             <option value="soe">School of Engineering
-                        </option>
-                        <option value="sovs">School of Vocational Studies and Applied Sciences
-                        </option>
-                        <option value="sobt">School of Biotechnology
-                        </option>
-                        <option value="som">School of Management
-                        </option>
-                        <option value="sict">School of Information and Communication Technology
-                        </option>
-                        <option value="sol">School of Law, Justice and Governance
-                        </option>
-                        <option value="sobsc">School of Buddhist Studies and Civilization
-                        </option>
-                        <option value="sohss">School of Humanities and Social Sciences
-                        </option>
-          </select></td>
-      </tr>
-      
-       <tr>
-        <td width="20%" align="left">Office Number:</td>
-        <td width="80%"><label>
-          <input name="officeNumber" type="text" id="officeNumber" size="64" value="<?php echo $officeNumber; ?>" />
-        </label></td>
-      </tr>
-       <tr>
-        <td width="20%" align="left">Gender:</td>
-        <td width="80%"><label>
-          <input name="gender" type="radio" value="<?php echo $gender; ?>" /> <?php echo $gender?></label>
-        </td>
-      </tr>
-      <tr>
-        <td align="left">New Profile Picture:</td>
-        <td><label>
-          <input type="file" name="fileField" id="fileField" />
-        </label></td>
-      </tr> 
-           
-      <tr>
-        <td>&nbsp;</td>
-        <td ><label>
-         <input type="submit" name="button" id="button" value="Make Changes" />
-        </label></td>
-      </tr>
-    </table>
-    </form>
-			
-			</div>
+            </div>
           
 
                

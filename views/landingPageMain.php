@@ -86,13 +86,13 @@ $lname = $rows['lastName'];
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-terminal"></i> Activity Log</a>
+                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Activity Log</a>
                     </li>
                                                 <li>
                             <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>

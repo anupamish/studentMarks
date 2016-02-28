@@ -7,8 +7,8 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,13 +94,13 @@ td {padding:5px; }
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-terminal"></i> Activity Log</a>
+                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Activity Log</a>
                     </li>
                                                 <li>
                             <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
@@ -117,6 +117,7 @@ td {padding:5px; }
     <div class="col-xs-12">
       <div class="table-responsive">
         <table class=".table-striped">
+        
           <tbody>
             <tr>
               <td><label>School:
@@ -149,10 +150,11 @@ td {padding:5px; }
                 <option value="">-------Select Session-------</option>
                 </select></td>
                 <td><div class= "control-group">
-                <button type="submit" class="btn btn-primary btn-large btn-block" href="#">Show</button>
+                <button type="submit" onclick=""<?php echo testfun(); ?>"" class="btn btn-primary btn-large btn-block">Show</button>
                 </div></td>
             </tr>
           </tbody>
+          
         </table>
       </div>
     </div>
@@ -184,24 +186,34 @@ td {padding:5px; }
         </thead>
 
         <tbody>
-
-            <tr>
-                <td>12ics039</td>
-                <td>Shubham Shukla</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-            <tr>
-
-            </tr>
-
-            <tr>
-
-            </tr>
-
+        <?php
+        function populateTable(){
+             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,oddMidMarks,oddEndMarks,evenMidMarks,evenEndMarks FROM student";
+            $resultTable = $link->query($sqlTable);
+            $row1= mysqli_fetch_array($resultTable);
+            if (mysqli_num_rows($resultTable) > 0) {
+               while($row2 = mysqli_fetch_array($resultTable)) {
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+                $omidmark = $row2['oddMidMarks'];
+                $oendmark = $row2['oddEndMarks'];
+                $emidmark = $row2['evenMidMarks'];
+                $eendmark = $row2['evenEndMarks'];
+        echo "<tr>";
+         echo "<td>"."<center>".$reg."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+        echo "<td>" .$omidmark."</td>";
+        echo "<td>".$oendmark."</td>";
+        echo "<td>".$emidmark."</td>";
+        echo "<td>".$eendmark."</td>";
+        echo "</tr>";
+    }
+}else {
+      echo "No rows found!";
+}
+}
+?>
         </tbody>
 
     </table>    
