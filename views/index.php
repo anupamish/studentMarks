@@ -19,7 +19,7 @@
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
             <?php session_start();?>
-			<form action="http://localhost/studentMarks/phpIncludes/loginAction" method="post">
+			<form action="http://localhost/studentMarks/phpIncludes/loginAction.php" method="post">
 			<div class="login-form">
 				<div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="Username" name="username" required>

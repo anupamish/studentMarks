@@ -24,10 +24,12 @@
                 <p>
                     <label>Password*
                     </label>
-                    <input type="password" required name="password"/>
+                    <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+" required name="password"/>
                     <label>Repeat Password*
                     </label>
-                    <input type="password" required name="rpassword"/>
+                    <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
+" required name="rpassword"/>
                     <label class="obinfo">* obligatory fields
                     </label>
                 </p>
@@ -108,7 +110,7 @@
                     <div class="infobox_text">
                     <p>1. Please use your University provided E-Mail ID for Registration.</p>
 					<p>2. Details which are not necessary during registration can be reset later.</p>
-					<p>3. Contact Administrator for any other enquiries.</p>
+					<p>3. Password should be of minimum 8 characters and should consist of UpperCase, LowerCase and Number/Special Character.</p>
                     </div>
                 </div>
             </fieldset>
