@@ -12,6 +12,9 @@
     <div class="login">
         <div class="login-screen">
             <div class="app-title">
+            <div align="right">
+            <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
+            </div>
             <h2>Student Result Processing System</h2>
             </div>
             <div class="login-form">
