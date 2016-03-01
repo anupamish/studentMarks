@@ -18,17 +18,22 @@
 			<div class="login-form">
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
+            <?php session_start();?>
 			<form action="http://localhost/studentMarks/phpIncludes/loginAction" method="post">
 			<div class="login-form">
 				<div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="Username" name="username" required>
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
-
+				
 				<div class="control-group">
 				<input type="password" class="login-field" value="" placeholder="Password" name="password" required>
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
+                <div id="errMsg">
+                  <?php if(!empty($_SESSION['errMsg'])) { echo $_SESSION['errMsg']; } ?>
+        </div>
+        <?php unset($_SESSION['errMsg']); ?>
 				
 				<div class= "control-group">
 				<button type="submit" class="btn btn-primary btn-large btn-block" href="#">Login</button>
