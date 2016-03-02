@@ -120,10 +120,11 @@ td {padding:5px; }
         
           <tbody>
             <tr>
+			<form action="" method="get" >
               <td><label>School:
                     </label></td>
-              <td><select required name="school" class = "demoInputBox" onChange="getState(this.value);">
-                        <option>-------Select College-------</option>
+              <td><select  name="school" class = "demoInputBox" onChange="getState(this.value);">
+						<option value="">All</option>
                         <option value="soe">School of Engineering
                         </option>
                         <option value="sovs">School of Vocational Studies and Applied Sciences
@@ -132,7 +133,7 @@ td {padding:5px; }
                         </option>
                         <option value="som">School of Management
                         </option>
-                        <option value="sict">School of Information and Communication Technology
+                        <option value="soict">School of Information and Communication Technology
                         </option>
                         <option value="sol">School of Law, Justice and Governance
                         </option>
@@ -152,6 +153,7 @@ td {padding:5px; }
                 <td><div class= "control-group">
                 <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
                 </div></td>
+			</form>
             </tr>
           </tbody>
           
@@ -188,8 +190,10 @@ td {padding:5px; }
         <tbody>
         <?php
 
-        
-             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,oddMidMarks,oddEndMarks,evenMidMarks,evenEndMarks FROM student";
+			if(isset($_GET['school']))
+			 $school = $_GET['school'];
+			 else $school = '';
+             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,oddMidMarks,oddEndMarks,evenMidMarks,evenEndMarks FROM student where college like '%$school%' ";
              global $link;
                 $resultTable = $link -> query($sqlTable);           
               if (mysqli_num_rows($resultTable) > 0) {

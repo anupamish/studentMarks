@@ -31,7 +31,7 @@
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
                 <div id="errMsg">
-                  <?php if(!empty($_SESSION['errMsg'])) { echo $_SESSION['errMsg']; } ?>
+                  <?php if(!empty($_SESSION['errMsg'])) { echo "<h5><font color='red'>".$_SESSION['errMsg']."</font></h5>"; } ?>
         </div>
         <?php unset($_SESSION['errMsg']); ?>
 				
