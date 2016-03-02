@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html >
   <head>
@@ -22,12 +25,17 @@
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
 			<br>
+			<?php
+			if(isset($_SESSION['error1'])){
+				echo "<center><h4>Please use only University Provided E-Mail Id (e.g. username@gbu.ac.in)</center></h4>";
+				}
+		   if(isset($_SESSION['error2'])){
+			echo "<center> <h4>Password and Repeat Password don't match.</h4></center>";
+		  }
+		   ?>
+            <br>
 			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-
+			
             <div class= "control-group">
 				<a class="btn1 btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php"><center>Try Registering Again</center> </a>
 				</div>
@@ -41,4 +49,5 @@
     
     
   </body>
+  <?php session_destroy()?>
 </html>
