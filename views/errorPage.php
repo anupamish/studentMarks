@@ -2,7 +2,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Login into Student Result Processing System</title>   
+    <title>Student Result Processing System</title>   
         <link rel="stylesheet" href="http://localhost/studentMarks/css/styleLogin.css">
   </head>
 
@@ -13,6 +13,9 @@
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
+			<div align="right">
+            <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
+            </div>
 			<h2>Student Result Processing System</h2>
 			</div>
 			<div class="login-form">
@@ -26,7 +29,7 @@
 			<br>
 
             <div class= "control-group">
-				<a class="btn btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php"><center>Try Registering Again</center> </a>
+				<a class="btn1 btn-primary btn-large btn-block" href="http://localhost/studentMarks/views/register.php"><center>Try Registering Again</center> </a>
 				</div>
 		</div>
 	</div>

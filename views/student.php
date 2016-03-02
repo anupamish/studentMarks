@@ -149,7 +149,7 @@ td {padding:5px; }
                 </select></td>
                 <td><label>Subject:</label></td>
               <td><select name="subject" class="demoInputBox">
-                <option value="">-------Select Subject-------</option>
+                <option value="">All</option>
                 </select></td>
                 <td><div class= "control-group">
                 <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
