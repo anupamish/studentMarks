@@ -29,5 +29,6 @@ header("Location:http://localhost/studentMarks/views/index.php");
 echo "There is some problem in inserting record";
 }} else{
 	$_SESSION['error2']="Password and Repeat Password dont match.";
+	header("Location: http://localhost/studentMarks/views/errorPage.php");
 }
 ?>
