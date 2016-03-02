@@ -144,7 +144,8 @@ td {padding:5px; }
                      </select></td>
                     <td><label>Branch:</label></td>
               <td><select name="branch" class="demoInputBox">
-                <option value="">-------Select Branch-------</option>
+                <option value="">All</option>
+                
                 </select></td>
                 <td><label>Subject:</label></td>
               <td><select name="subject" class="demoInputBox">
