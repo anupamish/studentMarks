@@ -5,8 +5,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" type="text/css" href="http://localhost/studentMarks/css/styleRegister.css"/>
     </head>
-    <body>    
-        <form action="http://localhost/studentMarks/phpIncludes/registerForm.php" class="register" method="post">
+    <body>
+    	    
+        <form  action="http://localhost/studentMarks/phpIncludes/registerForm.php" class="register" method="post">
         <div align="right">
             <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
             </div>
@@ -21,15 +22,13 @@
                     </label>
                     <input type="text" required name="email"/>
                 </p>
-                <p>
+                 <p>
                     <label>Password*
                     </label>
-                    <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
-" required name="password"/>
+                    <input type="password"  required name="password"/>
                     <label>Repeat Password*
                     </label>
-                    <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$
-" required name="rpassword"/>
+                    <input type="password"  required name="rpassword"/>
                     <label class="obinfo">* obligatory fields
                     </label>
                 </p>
@@ -110,7 +109,7 @@
                     <div class="infobox_text">
                     <p>1. Please use your University provided E-Mail ID for Registration.</p>
 					<p>2. Details which are not necessary during registration can be reset later.</p>
-					<p>3. Password should be of minimum 8 characters and should consist of UpperCase, LowerCase and Number/Special Character.</p>
+					<p>3. Password should consist of UpperCase, LowerCase and Number.</p>
                     </div>
                 </div>
             </fieldset>
@@ -125,7 +124,7 @@
             <div><button class="button">Register</button></div>
 
         </form>
-    </body>
+      </body>
 </html>
 
 
