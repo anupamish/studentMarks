@@ -56,8 +56,8 @@
 				<p>
                     <label>Profile Picture
                     </label>
-                    <input type="file" name="#" id="#" />
-                </p>
+                    <input type="file" name="file" id="file" />
+                 </p>
                 
             </fieldset>
             <fieldset class="row3">
@@ -121,7 +121,7 @@
                     <label>*  I accept the <a href="#">Terms and Conditions</a></label>
                 </p>
               </fieldset>
-            <div><button class="button">Register</button></div>
+            <div><button class="button" name="register">Register</button></div>
 
         </form>
       </body>

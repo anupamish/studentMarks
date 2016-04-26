@@ -104,7 +104,7 @@ $lname = $rows['lastName'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
-            <h1> Exam Page</h3>
+            <h1> Exams Page</h3>
             <br>
             <br>
             <br>

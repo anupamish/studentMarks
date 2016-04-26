@@ -207,7 +207,7 @@ td {padding:5px; }
                 $emidmark = $row2['evenMidMarks'];
                 $eendmark = $row2['evenEndMarks'];
         echo "<tr>";
-         echo "<td>"."<center>".$reg."</center>"."</td>";
+         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/studentView.php?reg=' . $reg . '">'.$reg.'</a>'."</center>"."</td>";
         echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
         echo "<td>"."<center>".$omidmark."</center>"."</td>";
         echo "<td>"."<center>".$oendmark."</center>"."</td>";
@@ -216,7 +216,10 @@ td {padding:5px; }
         echo "</tr>";
     }
 }else {
-      echo "No rows found!";
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";
+      
 }
 
 ?>
