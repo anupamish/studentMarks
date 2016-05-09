@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2016 at 05:28 AM
+-- Generation Time: Apr 26, 2016 at 06:27 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `studentmarks`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE IF NOT EXISTS `courses` (
+  `course_code` varchar(10) NOT NULL,
+  `course_name` varchar(100) NOT NULL,
+  `semester` int(3) NOT NULL,
+  `credits` int(3) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  PRIMARY KEY (`course_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_code`, `course_name`, `semester`, `credits`, `username`) VALUES
+('CS101', 'C Programming', 1, 3, 'demo@gbu.ac.in'),
+('MA201', 'Maths 3', 3, 4, 'demo@gbu.ac.in');
 
 -- --------------------------------------------------------
 
@@ -72,7 +95,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`email`, `password`, `firstName`, `lastName`, `school`, `designation`, `officeNumber`, `gender`, `timeReg`) VALUES
-('12ics039@gbu.ac.in', '123456', 'Shubham', 'Shukla', 'soe', 'pro', 'Il20', 'female', '2016-02-28 13:57:16');
+('12ics039@gbu.ac.in', '123456', 'Shubham', 'Shukla', 'soe', 'pro', 'Il20', 'female', '2016-02-28 13:57:16'),
+('anupam@gbu.ac.in', 'password', 'Anupam', 'Mishra', 'sict', 'pro', 'IL 202', 'male', '2016-03-03 02:17:01'),
+('demo@gbu.ac.in', 'demo123', 'Demo', 'Demo', 'sict', 'rfa', 'IL 202', 'female', '2016-02-29 10:04:57');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

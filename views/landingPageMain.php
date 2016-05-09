@@ -86,7 +86,7 @@ $lname = $rows['lastName'];
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
-                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Result Analysis</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -105,7 +105,7 @@ $lname = $rows['lastName'];
         <div id="page-wrapper">
 			<div id="container-fluid">
             <h3> Your Registered Courses </h3>
-			<table class="table table-bordered">
+			<table class="table table-bordred table-striped table-hover">
 
         <thead>
 
@@ -133,7 +133,7 @@ $lname = $rows['lastName'];
 				$courseCredits= $row2['credits'];
                 
         echo "<tr>";
-         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/courseEntry.php?id=' . $courseCode . '">'.$courseCode.'</a>'."</center>"."</td>";
+         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/courseLanding.php?id=' . $courseCode . '">'.$courseCode.'</a>'."</center>"."</td>";
         echo "<td>"."<center>".$courseName."</center>"."</td>";
         echo "<td>"."<center>".$courseSemester."</center>"."</td>";
         echo "<td>"."<center>".$courseCredits."</center>"."</td>";

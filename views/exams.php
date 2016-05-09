@@ -86,7 +86,7 @@ $lname = $rows['lastName'];
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li class="active">
-                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Result Analysis</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -104,30 +104,51 @@ $lname = $rows['lastName'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
-            <h1> Exams Page</h3>
             <br>
+            <div class="row">
+    <div class="col-xs-12">
+      <div >
+        <table class="table">
+        
+          <tbody>
+            <tr>
+			<form action="" method="get" >
+			<td><label>Course:
+                    </label></td>
+             <td><select name="owner">
+			<?php 
+			$sqlFill ="SELECT course_code FROM courses WHERE username like '%$username%'";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$courseCode= $row['course_code'];
+			echo '<option value="'.$courseCode.'">'.$courseCode.'</option>';
+			}
+			?>
+</select></td>
+			<td><div class= "control-group">
+                <button type="submit" name="submit" class="btn btn-primary btn-large btn-block">Show</button>
+                </div></td>
+			</form>
+			</tr>
+			</tbody>
+			</table>
+			<?php
+			if(isset($_GET['submit'])){
+				$_SESSION['chartcoursecode']=$_GET['owner'];
+			}
+			?>
+			</div>
+			</div>
+			</div>
+			</div>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div id="chart-container">Your Chart will render here once you chose the desired course.</div>
+  <script src="http://localhost/studentMarks/js/jquery-2.2.3.min.js"></script>
+  <script src="http://localhost/studentMarks/js/fusioncharts.js"></script>
+  <script src="http://localhost/studentMarks/js/fusioncharts.charts.js"></script>
+  <script src="http://localhost/studentMarks/js/themes/fusioncharts.theme.zune.js"></script>
+  <script src="http://localhost/studentMarks/js/app.js"></script>
+  </div>
             
             </div>
           

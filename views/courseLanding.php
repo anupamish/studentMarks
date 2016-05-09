@@ -7,20 +7,8 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
-$reg= $_GET['reg'];
+$courseCode= $_GET['id'];
 ?>
-<?php
-$sql_query_student = "SELECT stuFirstName,stuLastName,college,branch,semester FROM student WHERE regNo='$reg'";
-$result2 = $link -> query($sql_query_student);
-$rows2 = mysqli_fetch_array($result2);
-$studentFirstName = $rows2['stuFirstName'];
-$studentLastName = $rows2['stuLastName'];
-$college = $rows2['college'];
-$branch = $rows2['branch'];
-$semester = $rows2['semester'];
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,11 +79,11 @@ $semester = $rows2['semester'];
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li >
+                    <li class="active">
                         <a href="http://localhost/studentMarks/views/landingPageMain.php" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li >
@@ -117,78 +105,43 @@ $semester = $rows2['semester'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
-            <?php echo'<h3>Student Details: '.$reg.'</h3>'; ?>
+            <?php echo'<h3>Currently you are viewing details for: '.$courseCode.'</h3>';
+            	$_SESSION['courseCode']=$courseCode;
+            ?>
             <hr>
-            <?php
-				echo "<h5> Student Name: ".$studentFirstName." ".$studentLastName;
-				echo "<h5> College: ".$college;
-				echo "<h5> Branch: ".$branch;
-				echo "<h5> Semester: ".$semester;
+            <div class="container">
+			<?php
+				$sql_course_query="SELECT * FROM courses WHERE course_code like '%$courseCode%'";
+				$resultCourse = $link -> query($sql_course_query);
+				$rowCourse = mysqli_fetch_array($resultCourse);
+				$courseName = $rowCourse['course_name'];
+				$courseSemester = $rowCourse['semester'];
+				$courseCredits = $rowCourse['credits'];
 			?>
-            <hr>
-            <h3> Marks Details </h3>
-            <hr>
-            <table class="table table-bordered">
+			<h3><u>Course Details</u></h3>
+			<h4><u> Course Name:</u> <?php echo $courseName ; ?></h4>	
+			<h4><u> Course Semester:</u> <?php echo $courseSemester ; ?></h4>	
+			<h4><u> Course Credits:</u> <?php echo $courseCredits ; ?></h4>		
+			<br>
+			<hr>
+			<h3><u>Course Actions</u></h3>
+			<br>
+			<table class="table table-bordred table-striped table-hover">
+			<tbody>
+			<tr>
+			<td><a href="http://localhost/studentMarks/views/courseEntry.php">Enter Marks for Students</a></td>
+			<tr>
+			<td>View Marks Entered</td>
+			</tr>
+			</tbody>
+			</table>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>                 
 
-        <thead>
-
-            <tr>
-
-              <th>Course Code</th>  
-              <th>Course Name</th>
-              <th>Mid Semester Marks (25)</th>
-              <th>End Semester Marks (50)</th>
-              <th>Internal Assesment (25)</th>
-
-            </tr>
-           
-        </thead>
-        <tbody>
-         <?php
-
-			$sql_query_marks = "SELECT course_code,midMarks,endMarks,internalMarks FROM marks WHERE course_code IN ( SELECT course_code FROM courses WHERE username='$username') AND regNo='$reg'";
-             global $link;
-              $result3= $link ->query($sql_query_marks);         
-              if (mysqli_num_rows($result3) > 0) {
-               while($rows3 = mysqli_fetch_array($result3)) {
-                $course_code=$rows3['course_code'];
-				$midMarks=$rows3['midMarks'];
-				$endMarks=$rows3['endMarks'];
-				$internalMarks=$rows3['internalMarks'];
-				$sql_query_course_name = "SELECT course_name FROM courses WHERE course_code='$course_code'";
-				$result4= $link ->query($sql_query_course_name);
-				$rows4= mysqli_fetch_array($result4);
-				$course_name=$rows4['course_name'];
-               echo "<tr>";
-         echo "<td>"."<center>".$course_code."</center>"."</td>";
-        echo "<td>"."<center>".$course_name."</center>"."</td>";
-		 echo "<td>"."<center>".$midMarks."</center>"."</td>";
-		 echo "<td>"."<center>".$endMarks."</center>"."</td>";
-		 echo "<td>"."<center>".$internalMarks."</center>"."</td>";
-        echo "</tr>";
-    }
-}else {
-	echo "<tr>";
-    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-	echo "</tr>";
-      
-}
-
-?>
-        </tbody>
-        </table>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-                        
-            </div>
-          
-
-               
-
-          
+          </div>
             <!-- /.container-fluid -->
 
         </div>

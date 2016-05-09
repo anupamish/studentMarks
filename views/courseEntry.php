@@ -7,7 +7,7 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
-$courseCode= $_GET['id'];
+$courseCode= $_SESSION['courseCode'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +87,7 @@ $courseCode= $_GET['id'];
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li >
-                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Result Analysis</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -105,30 +105,117 @@ $courseCode= $_GET['id'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
-            <?php echo'<h3>'.$courseCode.' Entry Page</h3>'; ?>
+            <?php echo'<h3>Enter Marks for: '.$courseCode.'</h3>'; ?>
+            <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class=".table-striped">
+        
+          <tbody>
+            <tr>
+			<form action="" method="get" >
+              <td><label>Semester:
+                    </label></td>
+              <td><select  name="semester" class = "demoInputBox">
+						<option value="1">1</option>
+                   		<option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                     </select></td>
+                    <td><label>Branch:</label></td>
+              <td><select name="branch" class = "demoInputBox">
+                <option value="CS">Computer Science</option>
+                <option value="ECE">Electronics and Communication Engineering</option>
+                <option value="MBA">Master of Business Administration</option>
+                </select></td>
+               <td><div class= "control-group">
+                <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
+                </div></td>
+			</form>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="table table-bordred table-striped">
+
+        <thead>
+
+            <tr>
+
+              <th>Registration No.</th>  
+              <th>Student Name</th>
+              <th>Mid Semester Marks (25)</th>
+              <th>End Semester Marks (50)</th>
+              <th>Internal Assesment (25)</th>
+              <th>Insert/Edit</th>
+              
+			  	
+            </tr>
+           
+        </thead>
+
+        <tbody>
+        <?php
+
+			if(isset($_GET['semester'])&& isset($_GET['branch'])){
+			 $semester =$_GET['semester'];
+			 $branch = $_GET['branch'];}else{
+				  $semester = '';
+				  $branch='';}
+             $sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
+			 global $link;
+                $result1 = $link -> query($sqlDetail);           
+              if (mysqli_num_rows($result1) > 0) {
+               while($row2 = mysqli_fetch_array($result1)) {
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+				$sqlMarks ="SELECT midMarks,endMarks,internalMarks FROM marks WHERE regNo like '%$reg%'";
+				$result2 = $link->query($sqlMarks);
+				$rows3 = mysqli_fetch_array($result2);
+				$midMarks=$rows3['midMarks'];
+				$endMarks=$rows3['endMarks'];
+				$internalMarks=$rows3['internalMarks'];
+				
+               echo "<tr>";
+         echo "<td>"."<center>".$reg."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+		 echo "<td>"."<center>".$midMarks."</center>"."</td>";
+		 echo "<td>"."<center>".$endMarks."</center>"."</td>";
+		 echo "<td>"."<center>".$internalMarks."</center>"."</td>";
+		 echo "<td>"."<center>"."<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>"."</center>"."</td>";
+        echo "</tr>";
+    }
+}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";
+      
+}
+
+?>
+
+        </tbody>
+
+    </table>
+    <br>
+    <a href="http://localhost/studentMarks/phpIncludes/destroyCourse.php" class="btn btn-primary btn-large btn-block">Finish Marks Entry Session.</a>
+   	<p><i>Note: Always Finish Marks Entry Session once you have completed the marks entry.</i></p>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            
+            
+         
             
             </div>
           

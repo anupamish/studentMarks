@@ -94,7 +94,7 @@ td {padding:5px; }
                         <a href="http://localhost/studentMarks/views/student.php"><i class="fa fa-graduation-cap"></i> Students</a>
                     </li>
                     <li>
-                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i> Exams</a>
+                        <a href="http://localhost/studentMarks/views/exams.php"><i class="fa fa-file-excel-o"></i>Result Analysis</a>
                     </li>
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -116,7 +116,7 @@ td {padding:5px; }
   <div class="row">
     <div class="col-xs-12">
       <div class="table-responsive">
-        <table class=".table-striped">
+        <table class="table table-bordred table-striped">
         
           <tbody>
             <tr>
@@ -165,7 +165,7 @@ td {padding:5px; }
 </div>
 
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover table-striped">
 
         <thead>
 
@@ -173,19 +173,11 @@ td {padding:5px; }
 
               <th>Registration No.</th>  
               <th>Student Name</th>
-              <th colspan="2" scope='colgroup'>Odd Semester Result</th>
-              <th colspan="2" scope='colgroup'>Even Semester Result</th>
+              <th> Semester</th>
+              
 
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Mid-term Marks</th>
-                <th>Mid-term Marks</th>
-                <th>End-term Marks</th>
-                <th>End-term Marks</th>
-
-            </tr>
+           
         </thead>
 
         <tbody>
@@ -194,7 +186,7 @@ td {padding:5px; }
 			if(isset($_GET['school']))
 			 $school = $_GET['school'];
 			 else $school = '';
-             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,oddMidMarks,oddEndMarks,evenMidMarks,evenEndMarks FROM student where college like '%$school%' ";
+             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,semester FROM student where college like '%$school%' ";
              global $link;
                 $resultTable = $link -> query($sqlTable);           
               if (mysqli_num_rows($resultTable) > 0) {
@@ -202,17 +194,12 @@ td {padding:5px; }
                 $reg= $row2['regNo'];
                 $sfname =$row2['stuFirstName'];
                 $slname = $row2['stuLastName'];
-                $omidmark = $row2['oddMidMarks'];
-                $oendmark = $row2['oddEndMarks'];
-                $emidmark = $row2['evenMidMarks'];
-                $eendmark = $row2['evenEndMarks'];
-        echo "<tr>";
+				$semester = $row2['semester'];
+               echo "<tr>";
          echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/studentView.php?reg=' . $reg . '">'.$reg.'</a>'."</center>"."</td>";
         echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
-        echo "<td>"."<center>".$omidmark."</center>"."</td>";
-        echo "<td>"."<center>".$oendmark."</center>"."</td>";
-        echo "<td>"."<center>".$emidmark."</center>"."</td>";
-        echo "<td>"."<center>".$eendmark."</center>"."</td>";
+		 echo "<td>"."<center>".$semester."</center>"."</td>";
+		 
         echo "</tr>";
     }
 }else {
