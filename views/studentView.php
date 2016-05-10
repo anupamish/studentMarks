@@ -128,7 +128,7 @@ $semester = $rows2['semester'];
             <hr>
             <h3> Marks Details </h3>
             <hr>
-            <table class="table table-bordered">
+            <table class="table  table-striped">
 
         <thead>
 

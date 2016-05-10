@@ -129,21 +129,22 @@ $courseCode= $_GET['id'];
 			<table class="table table-bordred table-striped table-hover">
 			<tbody>
 			<tr>
-			<td><a href="http://localhost/studentMarks/views/courseEntry.php">Enter Marks for Students</a></td>
+			<td><a href="http://localhost/studentMarks/views/courseEntry.php">Enter Marks for Students</a></td></tr>
 			<tr>
-			<td>View Marks Entered</td>
+			<td><a href="http://localhost/studentMarks/views/viewMarksCourse.php">View Marks Entered</a></td>
 			</tr>
+			<tr>
+			<td><a href="http://localhost/studentMarks/phpIncludes/csvExport.php">Export Data in Excel Sheet</a></td></tr>
 			</tbody>
 			</table>
 			<br>
+			
 			<br>
-			<br>
-			<br>
-			<br>                 
+			                 
 
           </div>
             <!-- /.container-fluid -->
-
+			
         </div>
         <!-- /#page-wrapper -->
 

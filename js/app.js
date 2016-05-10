@@ -12,7 +12,7 @@ $(function(){
         "theme": "zune"
       };
       apiChart = new FusionCharts({
-        type: 'bar2d',
+        type: 'column2d',
         renderAt: 'chart-container',
         width: '550',
         height: '350',
