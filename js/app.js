@@ -6,7 +6,7 @@ $(function(){
       chartData = data;
       var chartProperties = {
         "caption": "Students Result Analysis",
-        "xAxisName": "Student Registeration Number",
+        "xAxisName": "Student Registration Number",
         "yAxisName": "Marks Scored",
         "rotatevalues": "1",
         "theme": "zune"

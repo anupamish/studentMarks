@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2016 at 06:27 PM
+-- Generation Time: May 10, 2016 at 07:48 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -41,7 +41,34 @@ CREATE TABLE IF NOT EXISTS `courses` (
 
 INSERT INTO `courses` (`course_code`, `course_name`, `semester`, `credits`, `username`) VALUES
 ('CS101', 'C Programming', 1, 3, 'demo@gbu.ac.in'),
-('MA201', 'Maths 3', 3, 4, 'demo@gbu.ac.in');
+('DM123', 'Chutiyapanti', 8, 4, '12ics039@gbu.ac.in'),
+('MA201', 'Maths 3', 3, 4, 'demo@gbu.ac.in'),
+('MA402', 'Simulation and Modelling', 8, 4, 'demo@gbu.ac.in');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marks`
+--
+
+CREATE TABLE IF NOT EXISTS `marks` (
+  `course_code` varchar(10) NOT NULL,
+  `regNo` varchar(10) NOT NULL,
+  `midMarks` int(3) NOT NULL,
+  `internalMarks` int(3) NOT NULL,
+  `endMarks` int(3) NOT NULL,
+  PRIMARY KEY (`course_code`,`regNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`course_code`, `regNo`, `midMarks`, `internalMarks`, `endMarks`) VALUES
+('CS101', '12ics008', 25, 25, 50),
+('CS101', '12ics039', 18, 20, 50),
+('MA201', '12ics008', 20, 20, 42),
+('MA201', '12ics039', 25, 18, 33);
 
 -- --------------------------------------------------------
 
@@ -55,11 +82,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `stuLastName` text NOT NULL,
   `college` varchar(20) NOT NULL,
   `branch` varchar(20) NOT NULL,
-  `subject` varchar(10) NOT NULL,
-  `oddMidMarks` varchar(2) NOT NULL,
-  `oddEndMarks` varchar(2) NOT NULL,
-  `evenMidMarks` varchar(2) NOT NULL,
-  `evenEndMarks` varchar(2) NOT NULL,
+  `semester` int(3) NOT NULL,
   PRIMARY KEY (`regNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -67,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`regNo`, `stuFirstName`, `stuLastName`, `college`, `branch`, `subject`, `oddMidMarks`, `oddEndMarks`, `evenMidMarks`, `evenEndMarks`) VALUES
-('12ics008', 'Anupam', 'Mishra', 'SOICT', 'CS', 'MA 202', '21', '65', '20', '60'),
-('12ics039', 'Shubham', 'Shukla', 'SOICT', 'CS', 'MA202', '20', '70', '18', '75');
+INSERT INTO `student` (`regNo`, `stuFirstName`, `stuLastName`, `college`, `branch`, `semester`) VALUES
+('12ics008', 'Anupam', 'Mishra', 'SOICT', 'CS', 8),
+('12ics039', 'Shubham', 'Shukla', 'SOICT', 'CS', 8);
 
 -- --------------------------------------------------------
 

@@ -7,6 +7,8 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
+$regNo = $_GET['regNo'];
+$courseCode = $_SESSION['courseCode'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +93,7 @@ $lname = $rows['lastName'];
                                   <li>
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li>
+                        <li  >
                         <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Activity Log</a>
                     </li>
                                                 <li>
@@ -104,86 +106,80 @@ $lname = $rows['lastName'];
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-            <h3> Your Registered Courses </h3>
-			<table class="table table-bordred table-striped table-hover">
-
-        <thead>
-
-            <tr>
-
-              <th><center>Course Code</center></th>  
-              <th><center>Course Name</center></th>
-              <th><center>Semester</center></th>
-              <th><center>Course Credits</center></th>
-                          </tr>
-            
-        </thead>
-
-        <tbody>
-        <?php
-
-			 $sqlTable = "SELECT course_code,course_name,semester,credits FROM courses WHERE username LIKE '%$username%'";
-             global $link;
-                $resultTable = $link -> query($sqlTable);           
-              if (mysqli_num_rows($resultTable) > 0) {
-               while($row2 = mysqli_fetch_array($resultTable)) {
-                $courseCode= $row2['course_code'];
-				$courseName= $row2['course_name'];
-				$courseSemester= $row2['semester'];
-				$courseCredits= $row2['credits'];
-                
-        echo "<tr>";
-         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/courseLanding.php?id=' . $courseCode . '">'.$courseCode.'</a>'."</center>"."</td>";
-        echo "<td>"."<center>".$courseName."</center>"."</td>";
-        echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-        echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-        echo "</tr>";
-    }
-}else {
-	echo "<tr>";
-    echo "<td>"."<center>"."You have not registered for any courses yet."."</center>"."</td>";
-	echo "</tr>";
-}
-
-?>
-        </tbody>
-
-    </table>    
-			
+			<h3>Enter Marks for Student:<?php echo $regNo;?>for Course:<?php echo $courseCode;?></h3>
+			<hr>
+			<?php 
+			 function renderForm($regNo, $midMarks, $endMarks, $internalMarks)
+			 {
+			 ?>
+  			<table class= "table table-striped">
+ 			 <form action="" method="post">
+ 			 <tr>
+ 			<input type="hidden" name="regNo" value="<?php echo $regNo; ?>"/>
+			 <div>
+ 			<td>Roll Number:</td><td> <?php echo $regNo; ?></td></tr>
+ 			<tr><td>Mid Semester Marks (out of 25):</td><td> <input type="text" name="midMarks" value="<?php echo $midMarks; ?>" required /></td></tr>
+ 			<tr><td>Internal Marks (out of 25):</td><td> <input type="text" name="internalMarks" value="<?php echo $internalMarks; ?>" required /></td></tr>
+			<tr><td>End Semester Marks (out of 50):</td><td> <input type="text" name="endMarks" value="<?php echo $endMarks; ?>"required /></td></tr>
+ 			<tr> <td><input type="submit" class="btn btn-primary" name="submit" value="Submit"></td></tr>
+ 			</div>
+ 			</form> 
+ 			</table>
+ 
+			 <?php
+ 				}
+ 				if (isset($_POST['submit']))
+ 				{
+ 					$regNo = $_POST['regNo'];
+ 					$midMarks = $_POST['midMarks'];
+ 					$internalMarks = $_POST['internalMarks'];
+ 					$endMarks = $_POST['endMarks'];
+ 					$updateQuery ="UPDATE marks SET midMarks='$midMarks',endMarks='$endMarks',internalMarks='$internalMarks' WHERE regNo='$regNo' AND course_code='$courseCode'";
+ 					$resupdateQuery = $link->query($updateQuery);
+ 					echo("<script>location.href = 'http://localhost/studentMarks/views/courseEntry.php?';</script>");
+ 				}else{
+ 					if (isset($_GET['regNo']))
+ 					{
+ 						// query db
+ 						$regNo = $_GET['regNo'];
+ 						$query2 ="SELECT * FROM marks WHERE regNo='$regNo' AND course_code='$courseCode'";
+ 						$result2 = $link->query($query2);
+ 						$row23 = mysqli_fetch_array($result2);
+ 					
+ 						// check that the 'id' matches up with a row in the databse
+ 						if($row23)
+ 						{
+ 					
+ 							// get data from db
+ 							$midMarks = $row23['midMarks'];
+ 							$endMarks = $row23['endMarks'];
+ 							$internalMarks = $row23['internalMarks'];
+ 							// show form
+ 							renderForm($regNo, $midMarks, $endMarks,$internalMarks);
+ 						}
+ 						else
+ 						// if no match, display result
+ 						{
+ 							echo "No results!";
+ 						}
+ 					}
+ 					else
+ 					// if the 'id' in the URL isn't valid, or if there is no 'id' value, display an error
+ 					{
+ 						echo 'Error!';
+ 					}
+ 				}
+			?>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		
 			</div>
-            <hr>
-          <div align="left">
-          <h3> Register for Courses</h3>
-          <form action="http://localhost/studentMarks/phpIncludes/addCourse.php" method="post">
-          <table class="table table-striped">
-          <tr>
-          <td> Course Name: </td>
-          <td> <input type="text" name="courseName" length="50" required></td>
-     	  </tr>
-           <tr>
-          <td> Course Code: </td>
-          <td> <input type="text" name="courseCode" length="10" required></td>
-     	  </tr>
-           <tr>
-          <td> Course Semester: </td>
-          <td> <input type="int" name="courseSemester" length="3" required></td>
-     	  </tr>
-           <tr>
-          <td> Course Credits: </td>
-          <td> <input type="int" name="courseCredits" length="3" required></td>
-     	  </tr>
-          <tr>
-          <td> <input name="submit" class="btn btn-primary" type="submit" value="Register"></td>
-          </tr>
-          </table>
           
-          </form>
-          </div>
-          <div id="courseMsg">
-                  <?php if(!empty($_SESSION['courseMsg'])) { echo "<h5><font color='red'>".$_SESSION['courseMsg']."</font></h5>"; } ?>
-        </div>
-        <?php unset($_SESSION['courseMsg']); ?>
-				
 
                
 

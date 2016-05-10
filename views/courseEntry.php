@@ -158,7 +158,8 @@ $courseCode= $_SESSION['courseCode'];
               <th>Mid Semester Marks (25)</th>
               <th>End Semester Marks (50)</th>
               <th>Internal Assesment (25)</th>
-              <th>Insert/Edit</th>
+              <th>Enter Marks</th>
+              <th>Edit Marks</th>
               
 			  	
             </tr>
@@ -181,7 +182,7 @@ $courseCode= $_SESSION['courseCode'];
                 $reg= $row2['regNo'];
                 $sfname =$row2['stuFirstName'];
                 $slname = $row2['stuLastName'];
-				$sqlMarks ="SELECT midMarks,endMarks,internalMarks FROM marks WHERE regNo like '%$reg%'";
+				$sqlMarks ="SELECT midMarks,endMarks,internalMarks FROM marks WHERE regNo like '%$reg%' AND course_code='$courseCode'";
 				$result2 = $link->query($sqlMarks);
 				$rows3 = mysqli_fetch_array($result2);
 				$midMarks=$rows3['midMarks'];
@@ -194,7 +195,8 @@ $courseCode= $_SESSION['courseCode'];
 		 echo "<td>"."<center>".$midMarks."</center>"."</td>";
 		 echo "<td>"."<center>".$endMarks."</center>"."</td>";
 		 echo "<td>"."<center>".$internalMarks."</center>"."</td>";
-		 echo "<td>"."<center>"."<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></button>"."</center>"."</td>";
+		 echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEnter.php?regNo='.$reg.'">'.'<button class="btn btn-default">Enter</button>'.'</a></center></td>';
+		 echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEntry.php?regNo='.$reg.'">'.'<button class="btn btn-default">Edit</button>'.'</a></center></td>';
         echo "</tr>";
     }
 }else {
@@ -211,7 +213,7 @@ $courseCode= $_SESSION['courseCode'];
     </table>
     <br>
     <a href="http://localhost/studentMarks/phpIncludes/destroyCourse.php" class="btn btn-primary btn-large btn-block">Finish Marks Entry Session.</a>
-   	<p><i>Note: Always Finish Marks Entry Session once you have completed the marks entry.</i></p>
+   	<p><i>Note: Always click the "Finish Marks Entry Session" button once you have completed the marks entry.</i></p>
             <br>
             
             

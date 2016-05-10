@@ -115,7 +115,7 @@ $lname = $rows['lastName'];
 			<form action="" method="get" >
 			<td><label>Course:
                     </label></td>
-             <td><select name="owner">
+             <td><select name="course">
 			<?php 
 			$sqlFill ="SELECT course_code FROM courses WHERE username like '%$username%'";
 			$result = $link->query($sqlFill);
@@ -134,7 +134,7 @@ $lname = $rows['lastName'];
 			</table>
 			<?php
 			if(isset($_GET['submit'])){
-				$_SESSION['chartcoursecode']=$_GET['owner'];
+				$_SESSION['chartcoursecode']=$_GET['course'];
 			}
 			?>
 			</div>
@@ -148,6 +148,8 @@ $lname = $rows['lastName'];
   <script src="http://localhost/studentMarks/js/fusioncharts.charts.js"></script>
   <script src="http://localhost/studentMarks/js/themes/fusioncharts.theme.zune.js"></script>
   <script src="http://localhost/studentMarks/js/app.js"></script>
+  <br>
+  
   </div>
             
             </div>
@@ -178,3 +180,4 @@ $lname = $rows['lastName'];
 </body>
 
 </html>
+
