@@ -92,7 +92,7 @@ $lname = $rows['lastName'];
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li  class="active">
-                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Activity Log</a>
+                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Class Reports</a>
                     </li>
                                                 <li>
                             <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
@@ -104,31 +104,63 @@ $lname = $rows['lastName'];
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-			<h1> Activity Page</h3>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			<h3> Select the course you need to generate Class Report for. </h3>
+			<hr>
+			<table class="table table-striped table-hover">
+
+        <thead>
+
+            <tr>
+
+              <th><center>Course Code</center></th>  
+              <th><center>Course Name</center></th>
+              <th><center>Semester</center></th>
+              <th><center>Course Credits</center></th>
+                          </tr>
+            
+        </thead>
+
+        <tbody>
+        <?php
+
+			 $sqlTable = "SELECT course_code,course_name,semester,credits FROM courses WHERE username LIKE '%$username%'";
+             global $link;
+                $resultTable = $link -> query($sqlTable);           
+              if (mysqli_num_rows($resultTable) > 0) {
+               while($row2 = mysqli_fetch_array($resultTable)) {
+                $courseCode= $row2['course_code'];
+				$courseName= $row2['course_name'];
+				$courseSemester= $row2['semester'];
+				$courseCredits= $row2['credits'];
+                
+        echo "<tr>";
+         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/classReport.php?id=' . $courseCode . '">'.$courseCode.'</a>'."</center>"."</td>";
+        echo "<td>"."<center>".$courseName."</center>"."</td>";
+        echo "<td>"."<center>".$courseSemester."</center>"."</td>";
+        echo "<td>"."<center>".$courseCredits."</center>"."</td>";
+        echo "</tr>";
+    }
+}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."You have not registered for any courses yet."."</center>"."</td>";
+	echo "</tr>";
+}
+
+?>
+        </tbody>
+
+    </table>    
 			
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+					
 			</div>
           
 
