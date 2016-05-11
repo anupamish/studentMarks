@@ -45,7 +45,7 @@ function setGrade($totalMarks){
 <h1><strong><u>GAUTAM BUDDHA UNIVERSITY</u></strong></h1>
 <h3> Gautam Budh Nagar, Uttar Pradesh-201312 (INDIA)</h3>
 <h3>Class Report (2015-2016)</h3>
-<u><h3>Course Code: <?php echo $courseCode;?>, Course Name: <?php echo $courseName;?>, Course Semester: <?php echo $courseSemester;?>, Course Credits: <?php echo $courseCredits;?></u></h3>
+<u><h4>Course Code: <?php echo $courseCode;?>, Course Name: <?php echo $courseName;?>, Course Semester: <?php echo $courseSemester;?>, Course Credits: <?php echo $courseCredits;?></u></h4>
 <table class="table table-striped">
 <thead class="thead-inverse">
 <tr>

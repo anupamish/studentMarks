@@ -117,11 +117,12 @@ $lname = $rows['lastName'];
                     </label></td>
              <td><select name="course">
 			<?php 
-			$sqlFill ="SELECT course_code FROM courses WHERE username like '%$username%'";
+			$sqlFill ="SELECT course_code,course_name FROM courses WHERE username like '%$username%'";
 			$result = $link->query($sqlFill);
 			while ($row = mysqli_fetch_array($result)){
 				$courseCode= $row['course_code'];
-			echo '<option value="'.$courseCode.'">'.$courseCode.'</option>';
+				$courseName = $row['course_name'];
+			echo '<option value="'.$courseCode.'">'.$courseCode.'-'.$courseName.'</option>';
 			}
 			?>
 </select></td>
@@ -141,6 +142,8 @@ $lname = $rows['lastName'];
 			</div>
 			</div>
 			</div>
+			<h4>You are viewing chart for course: <u><?php if(isset($_SESSION['chartcoursecode'])){ echo $_GET['course'];}else echo "Select course above.";?></u></h4>
+			<hr>
             <br>
             <div id="chart-container">Your Chart will render here once you chose the desired course.</div>
   <script src="http://localhost/studentMarks/js/jquery-2.2.3.min.js"></script>

@@ -8,10 +8,28 @@ LINES TERMINATED BY '\n'
 FROM marks WHERE course_code='$courseCode'";
 $result = $link -> query($export_query);
 if($result){
+	echo "<div>";
 	echo "The Excel File has been exported successfully to the location C:/CSV/";
 	echo '<br> <a href="http://localhost/studentMarks/views/landingPageMain.php">Go Back</a>';
+	echo "</div>";
 }else{
-echo "The Excel File could not be exported.";
+	echo "<div>";
+	echo "The Excel File could not be exported. Please remove duplicate file from C:/CSV/ and try again.";
 	echo '<br> <a href="http://localhost/studentMarks/views/landingPageMain.php">Go Back</a>';
+	echo "</div>";
 }
 ?>
+<html>
+<head>
+<style type="text/css">
+div {
+    width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: 2px solid gray;
+    background-color:#BBDEFB;
+    margin: 0;
+}
+</style>
+</head>
+</html>
