@@ -1,6 +1,11 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+if(!isset($_SESSION['username'])){
+	header("Location: http://localhost/studentMarks/admin/index.php");
+}else{
+	
+}
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +49,7 @@ include ("../phpIncludes/connectMySQL.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/studentMarks/views/landingPageMain.php">Student Result Processing System</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/views/adminLanding.php">Student Result Processing System-Admin Panel</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -80,7 +85,7 @@ include ("../phpIncludes/connectMySQL.php");
                             <a href=""><i class="fa fa-fw fa-user"></i> Page 4</a>
                    </li>
                     <li>
-                            <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
+                            <a href="http://localhost/studentMarks/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
                     
                 </ul>
             </div>

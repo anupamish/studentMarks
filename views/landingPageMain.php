@@ -1,12 +1,16 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+if(!isset($_SESSION['username'])){
+	header("Location: http://localhost/studentMarks/views/index.php");
+}else{
 $username = $_SESSION['username'];
 $sql_query = "SELECT firstName, lastName FROM users WHERE email='$username'";
 $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
