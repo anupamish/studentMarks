@@ -22,9 +22,13 @@ if(isset($_POST['submit'])){
     <form action="" method="post">
 	<div class="login">
 		<div class="login-screen">
+		<div align="right">
+            <a href="http://localhost/studentMarks/views/index.php"><img height="20" width="20" src="http://localhost://studentMarks/imageResources/Close.png"></a>
+            </div>
 			<div class="app-title">
 			<h2>Student Result Processing System - Admin Panel</h2>
 			</div>
+
 			<div class="login-form">
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
@@ -44,6 +48,7 @@ if(isset($_POST['submit'])){
 				<div class= "control-group">
 				<button type="submit" class="btn btn-primary btn-large btn-block" name= "submit">Login</button>
 				</div>
+				
 			</div></form>
 		</div>
 	</div>

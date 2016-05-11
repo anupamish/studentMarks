@@ -72,7 +72,7 @@ if(!isset($_SESSION['username'])){
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="" ><i class="fa fa-book"></i>
+                        <a href="http://localhost/studentMarks/admin/viewUsers.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
                     <li>
@@ -94,22 +94,68 @@ if(!isset($_SESSION['username'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-
+            <?php echo'<h3>Enter Marks for: '.$courseCode.'</h3>'; ?>
             <div class="container">
-            <h3>Viewing all users in the system.</h3>
-            <hr>
-            <br>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class=".table-striped">
+        
+          <tbody>
+            <tr>
+            <form action="" method="get" >
+              <td><label>Semester:
+                    </label></td>
+             <td><select name="semester">
+            <?php 
+            $sqlFill ="SELECT semester FROM courses WHERE username like '%$username%' AND course_code like '%$courseCode%'";
+            $result = $link->query($sqlFill);
+            while ($row = mysqli_fetch_array($result)){
+                $courseSemester= $row['semester'];
+                
+            echo '<option value="'.$courseSemester.'">'.$courseSemester.'</option>';
+            }
+            ?>
+</select></td>
+                    <td><label>Branch:</label></td>
+              <td><select name="branch" class = "demoInputBox">
+             <?php 
+            $sqlFill ="SELECT branch,branch_name FROM branch";
+            $result = $link->query($sqlFill);
+            while ($row = mysqli_fetch_array($result)){
+                $branchName= $row['branch_name'];
+                $branchCode = $row['branch'];
+                
+            echo '<option value="'.$branchCode.'">'.$branchName.'</option>';
+            }
+            ?>
+                </select></td>
+               <td><div class= "control-group">
+                <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
+                </div></td>
+            </form>
+            </tr>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <table class="table table-bordred table-striped">
 
         <thead>
 
             <tr>
 
-              <th><center>Email</center></th>  
-              <th><center>First Name</center></th>
-              <th><center>Last Name</center></th>
-              <th><center>School</center> </th>
-              <th><center> Delete User</center></th>              
+              <th>Registration No.</th>  
+              <th>Student Name</th>
+              <th>Mid Semester Marks (25)</th>
+              <th>End Semester Marks (50)</th>
+              <th>Internal Assesment (25)</th>
+              <th>Enter Marks</th>
+              <th>Edit Marks</th>
+              
                 
             </tr>
            
@@ -118,21 +164,34 @@ if(!isset($_SESSION['username'])){
         <tbody>
         <?php
 
-            $sqlDetail = "SELECT email,firstName,lastName,school FROM users";
+            if(isset($_GET['semester'])&& isset($_GET['branch'])){
+             $semester =$_GET['semester'];
+             $branch = $_GET['branch'];}else{
+                  $semester = '';
+                  $branch='';}
+             $sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
              global $link;
                 $result1 = $link -> query($sqlDetail);           
               if (mysqli_num_rows($result1) > 0) {
                while($row2 = mysqli_fetch_array($result1)) {
-                $email= $row2['email'];
-                $fname =$row2['firstName'];
-                $lname = $row2['lastName'];
-                $school = $row2['school'];
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+                $sqlMarks ="SELECT midMarks,endMarks,internalMarks FROM marks WHERE regNo like '%$reg%' AND course_code='$courseCode'";
+                $result2 = $link->query($sqlMarks);
+                $rows3 = mysqli_fetch_array($result2);
+                $midMarks=$rows3['midMarks'];
+                $endMarks=$rows3['endMarks'];
+                $internalMarks=$rows3['internalMarks'];
+                
                echo "<tr>";
-         echo "<td>"."<center>".$email."</center>"."</td>";
-        echo "<td>"."<center>".$fname."</center>"."</td>";
-         echo "<td>"."<center>".$lname."</center>"."</td>";
-         echo "<td>"."<center>".$school."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
+         echo "<td>"."<center>".$reg."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+         echo "<td>"."<center>".$midMarks."</center>"."</td>";
+         echo "<td>"."<center>".$endMarks."</center>"."</td>";
+         echo "<td>"."<center>".$internalMarks."</center>"."</td>";
+         echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEnter.php?regNo='.$reg.'">'.'<button class="btn btn-default">Enter</button>'.'</a></center></td>';
+         echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEntry.php?regNo='.$reg.'">'.'<button class="btn btn-default">Edit</button>'.'</a></center></td>';
         echo "</tr>";
     }
 }else {

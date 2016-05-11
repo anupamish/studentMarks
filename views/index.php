@@ -45,6 +45,10 @@
 				<div>
 				<a href="http://localhost/studentMarks/views/forgetPassword.php"> Forgot Password?</a>
 				</div>
+				<br>
+				<div>
+				<a href="http://localhost/studentMarks/admin/index.php">Admin Login</a>
+				</div>
 							</div></form>
 		</div>
 	</div>
