@@ -72,7 +72,7 @@ if(!isset($_SESSION['username'])){
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="" ><i class="fa fa-book"></i>
+                        <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
                     <li>
@@ -131,7 +131,7 @@ if(!isset($_SESSION['username'])){
          echo "<td>"."<center>".$email."</center>"."</td>";
         echo "<td>"."<center>".$fname."</center>"."</td>";
          echo "<td>"."<center>".$lname."</center>"."</td>";
-         echo "<td>"."<center>".$school."</center>"."</td>";
+         echo "<td>"."<center>".strtoupper($school)."</center>"."</td>";
          echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
         echo "</tr>";
     }
