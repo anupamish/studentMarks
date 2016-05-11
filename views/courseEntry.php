@@ -117,23 +117,29 @@ $courseCode= $_SESSION['courseCode'];
 			<form action="" method="get" >
               <td><label>Semester:
                     </label></td>
-              <td><select  name="semester" class = "demoInputBox">
-						<option value="1">1</option>
-                   		<option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                     </select></td>
+             <td><select name="semester">
+			<?php 
+			$sqlFill ="SELECT semester FROM courses WHERE username like '%$username%' AND course_code like '%$courseCode%'";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$courseSemester= $row['semester'];
+				
+			echo '<option value="'.$courseSemester.'">'.$courseSemester.'</option>';
+			}
+			?>
+</select></td>
                     <td><label>Branch:</label></td>
               <td><select name="branch" class = "demoInputBox">
-                <option value="CS">Computer Science</option>
-                <option value="ECE">Electronics and Communication Engineering</option>
-                <option value="MBA">Master of Business Administration</option>
+             <?php 
+			$sqlFill ="SELECT branch,branch_name FROM branch";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$branchName= $row['branch_name'];
+				$branchCode = $row['branch'];
+				
+			echo '<option value="'.$branchCode.'">'.$branchName.'</option>';
+			}
+			?>
                 </select></td>
                <td><div class= "control-group">
                 <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>

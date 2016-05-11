@@ -8,6 +8,7 @@ $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
 $reg= $_GET['reg'];
+$_SESSION['regNo']= $reg;
 ?>
 <?php
 $sql_query_student = "SELECT stuFirstName,stuLastName,college,branch,semester FROM student WHERE regNo='$reg'";
@@ -117,7 +118,7 @@ $semester = $rows2['semester'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
-            <?php echo'<h3>Student Details: '.$reg.'</h3>'; ?>
+            <?php echo'<h3>Student Details: '.'<u>'.$reg.'</u></h3>'; ?>
             <hr>
             <?php
 				echo "<h5> Student Name: ".$studentFirstName." ".$studentLastName;
@@ -178,9 +179,17 @@ $semester = $rows2['semester'];
         </tbody>
         </table>
             <br>
-            <br>
-            <br>
-            <br>
+            <hr>
+            <h3> Marks Analysis Chart </h3>
+            <div id="chart-container">Your  Analysis chart will render here.</div>
+  <script src="http://localhost/studentMarks/js/jquery-2.2.3.min.js"></script>
+  <script src="http://localhost/studentMarks/js/fusioncharts.js"></script>
+  <script src="http://localhost/studentMarks/js/fusioncharts.charts.js"></script>
+  <script src="http://localhost/studentMarks/js/themes/fusioncharts.theme.zune.js"></script>
+  <script src="http://localhost/studentMarks/js/app2.js"></script>
+  <br>
+  
+  </div>
             <br>
                         
             </div>
