@@ -11,7 +11,7 @@ if (!$query)
 $_SESSION['courseMsg'] = "Course could not be added try again.";
 header("Location:http://localhost/studentMarks/views/landingPageMain.php");
 }else{
-$_SESSION['courseMsg'] = "Course added auccessfully.";
+$_SESSION['courseMsg'] = "Course added successfully.";
 header("Location:http://localhost/studentMarks/views/landingPageMain.php");
 }
 }

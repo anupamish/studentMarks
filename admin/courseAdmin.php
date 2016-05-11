@@ -6,6 +6,7 @@ if(!isset($_SESSION['username'])){
 }else{
 	
 }
+
 ?>
 <?php
 // to perfrom search
@@ -76,11 +77,11 @@ if (isset($_POST['search'])){
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li >
                         <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="http://localhost/studentMarks/admin/courseAdmin.php"><i class="fa fa-graduation-cap"></i> View Courses</a>
                     </li>
                     <li>
@@ -101,12 +102,12 @@ if (isset($_POST['search'])){
 			<div id="container-fluid">
 
             <div class="container">
-            <h3>Viewing all Users in the system.</h3>
+            <h3>Viewing all Courses in the system.</h3>
             <hr>
             <table class="table table-striped">
             <form action="" method="post">
             <tr>
-            <td><input type="text" name="searchQuery" placeholder="Enter either First Name,Last Name or Email to perform Search!" size="70"></td>
+            <td><input type="text" name="searchQuery" placeholder="Enter either Username or Course Code to perform Search!" size="70"></td>
             <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
             <tr>
             </form>
@@ -119,11 +120,13 @@ if (isset($_POST['search'])){
 
             <tr>
 
-              <th><center>Email</center></th>  
-              <th><center>First Name</center></th>
-              <th><center>Last Name</center></th>
-              <th><center>School</center> </th>
-              <th><center> Delete User</center></th>              
+              <th><center>Course Code</center></th>  
+              <th><center>Course Name</center></th>
+              <th><center>Course Semester</center></th>
+              <th><center>Course Credits</center> </th>
+                <th><center>Course Owner</center> </th>
+              <th><center> Delete Course</center></th>  
+                          
                 
             </tr>
            
@@ -131,22 +134,25 @@ if (isset($_POST['search'])){
 
         <tbody>
         <?php
-			if(!isset($_POST['search'])){
-            $sqlDetail = "SELECT email,firstName,lastName,school FROM users";
+
+        if(!isset($_POST['search'])){    
+        $sqlDetail = "SELECT  * FROM courses";
              global $link;
                 $result1 = $link -> query($sqlDetail);           
               if (mysqli_num_rows($result1) > 0) {
                while($row2 = mysqli_fetch_array($result1)) {
-                $email= $row2['email'];
-                $fname =$row2['firstName'];
-                $lname = $row2['lastName'];
-                $school = $row2['school'];
+                $courseCode= $row2['course_code'];
+                $courseName =$row2['course_name'];
+                $courseSemester = $row2['semester'];
+                $courseCredits = $row2['credits'];
+                $courseUser = $row2['username'];
                echo "<tr>";
-         echo "<td>"."<center>".$email."</center>"."</td>";
-        echo "<td>"."<center>".$fname."</center>"."</td>";
-         echo "<td>"."<center>".$lname."</center>"."</td>";
-         echo "<td>"."<center>".strtoupper($school)."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
+         echo "<td>"."<center>".$courseCode."</center>"."</td>";
+        echo "<td>"."<center>".$courseName."</center>"."</td>";
+         echo "<td>"."<center>".$courseSemester."</center>"."</td>";
+         echo "<td>"."<center>".$courseCredits."</center>"."</td>";
+         echo "<td>"."<center>".$courseUser."</center>"."</td>";
+         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
         echo "</tr>";
     }
 }else {
@@ -155,21 +161,23 @@ if (isset($_POST['search'])){
     echo "</tr>";
       
 }}else{
-	$sqlDetail = "SELECT email,firstName,lastName,school FROM users WHERE firstName='$searchString' OR lastName='$searchString' OR email='$searchString'";
+	$sqlDetail = "SELECT  * FROM courses WHERE course_code='$searchString' OR username='$searchString'";
 	global $link;
 	$result1 = $link -> query($sqlDetail);
 	if (mysqli_num_rows($result1) > 0) {
 		while($row2 = mysqli_fetch_array($result1)) {
-			$email= $row2['email'];
-			$fname =$row2['firstName'];
-			$lname = $row2['lastName'];
-			$school = $row2['school'];
+			$courseCode= $row2['course_code'];
+			$courseName =$row2['course_name'];
+			$courseSemester = $row2['semester'];
+			$courseCredits = $row2['credits'];
+			$courseUser = $row2['username'];
 			echo "<tr>";
-			echo "<td>"."<center>".$email."</center>"."</td>";
-			echo "<td>"."<center>".$fname."</center>"."</td>";
-			echo "<td>"."<center>".$lname."</center>"."</td>";
-			echo "<td>"."<center>".strtoupper($school)."</center>"."</td>";
-			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
+			echo "<td>"."<center>".$courseCode."</center>"."</td>";
+			echo "<td>"."<center>".$courseName."</center>"."</td>";
+			echo "<td>"."<center>".$courseSemester."</center>"."</td>";
+			echo "<td>"."<center>".$courseCredits."</center>"."</td>";
+			echo "<td>"."<center>".$courseUser."</center>"."</td>";
+			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
 			echo "</tr>";
 		}
 	}else {
@@ -185,7 +193,7 @@ if (isset($_POST['search'])){
         </tbody>
 
     </table>
-       	<p><i>Note: Deleting the user will result in deletion of all the data being held by the user in the system.</i></p>
+       	<p><i>Note: Deleting the course will result in deletion of all the data for the course owned by the specified user.</i></p>
     
            <br>
            <div id="deleteMsg">
@@ -198,7 +206,7 @@ if (isset($_POST['search'])){
          
          
 
-        </div>   
+         </div> 
         </div>
         <!-- /#page-wrapper -->
 
