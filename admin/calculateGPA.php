@@ -8,12 +8,6 @@ if(!isset($_SESSION['username'])){
 }
 
 ?>
-<?php
-// to perfrom search
-if (isset($_POST['search'])){
-	 $searchString= $_POST['searchQuery'];
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,10 +75,10 @@ if (isset($_POST['search'])){
                         <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="http://localhost/studentMarks/admin/courseAdmin.php"><i class="fa fa-graduation-cap"></i> View Courses</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-file-excel-o"></i> Calculate CGPA</a>
                     </li>
                     <li>
@@ -105,105 +99,68 @@ if (isset($_POST['search'])){
 			<div id="container-fluid">
             <div class="container">
             <div>
-            <h3>Viewing all Courses in the system.</h3>
-            <hr>
-            <table class="table table-striped">
-            <form action="" method="post">
+       		<h3>Calcuate CGPA for Students</h3>
+       		<hr>
+       		<div class="row">
+    <div class="col-xs-12">
+      <div >
+        <table class="table">
+        
+          <tbody>
             <tr>
-            <td><input type="text" name="searchQuery" placeholder="Enter either Username or Course Code to perform Search!" size="70"></td>
-            <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
-            <tr>
-            </form>
-            </table>
-            </div>
-            <hr>
+			<form action="" method="get" >
+			<td><label>Semester:
+                    </label></td>
+             <td><select name="semester">
+			<?php 
+			$sqlFill ="SELECT semester FROM student";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$semester= $row['semester'];
+				
+			echo '<option value="'.$semester.'">'.$semester.'</option>';
+			}
+			?>
+</select></td>
+<td><label>Branch:
+                    </label></td>
+             <td><select name="branch">
+			<?php 
+			$sqlFill ="SELECT branch FROM student AND SELECT branch_name FROM branch WHERE branch IN (SELECT branch FROM student)";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$branch= $row['branch'];
+				$branchName = $row['branch_name'];
+				
+			echo '<option value="'.$branch.'">'.$semester.'</option>';
+			}
+			?>
+</select></td>
+			<td><div class= "control-group">
+                <button type="submit" name="submit" class="btn btn-primary">Show</button>
+                </div></td>
+			</form>
+			</tr>
+			</tbody>
+			</table>
+			<?php
+			if(isset($_GET['submit'])){
+				$_SESSION['chartcoursecode']=$_GET['course'];
+			}
+			?>
+			</div>
+			</div>
+			</div>
+			</div>
+           <br>
+           <br>
+           <br>
             <br>
-		<table class="table  table-striped">
-
-        <thead>
-
-            <tr>
-              <th><center>Course Code</center></th>  
-              <th><center>Course Name</center></th>
-              <th><center>Course Semester</center></th>
-              <th><center>Course Credits</center> </th>
-              <th><center>Course Owner</center> </th>
-              <th><center> Delete Course</center></th>  
-           </tr>
-           
-        </thead>
-        <tbody>
-        <?php
-
-        if(!isset($_POST['search'])){    
-        $sqlDetail = "SELECT  * FROM courses";
-             global $link;
-                $result1 = $link -> query($sqlDetail);           
-              if (mysqli_num_rows($result1) > 0) {
-               while($row2 = mysqli_fetch_array($result1)) {
-                $courseCode= $row2['course_code'];
-                $courseName =$row2['course_name'];
-                $courseSemester = $row2['semester'];
-                $courseCredits = $row2['credits'];
-                $courseUser = $row2['username'];
-               echo "<tr>";
-         echo "<td>"."<center>".$courseCode."</center>"."</td>";
-         echo "<td>"."<center>".$courseName."</center>"."</td>";
-         echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-         echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-         echo "<td>"."<center>".$courseUser."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-         echo "</tr>";
-    }
-}else {
-    echo "<tr>";
-    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-    echo "</tr>";
-      
-}}else{
-	$sqlDetail = "SELECT  * FROM courses WHERE course_code='$searchString' OR username='$searchString'";
-	global $link;
-	$result1 = $link -> query($sqlDetail);
-	if (mysqli_num_rows($result1) > 0) {
-		while($row2 = mysqli_fetch_array($result1)) {
-			$courseCode= $row2['course_code'];
-			$courseName =$row2['course_name'];
-			$courseSemester = $row2['semester'];
-			$courseCredits = $row2['credits'];
-			$courseUser = $row2['username'];
-			echo "<tr>";
-			echo "<td>"."<center>".$courseCode."</center>"."</td>";
-			echo "<td>"."<center>".$courseName."</center>"."</td>";
-			echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-			echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-			echo "<td>"."<center>".$courseUser."</center>"."</td>";
-			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-			echo "</tr>";
-		}
-	}else {
-		echo "<tr>";
-		echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-		echo "</tr>";
-	
-	}
-}
-
-?>
-
-        </tbody>
-
-    </table>
-       	<p><i>Note: Deleting the course will result in deletion of all the data for the course owned by the specified user.</i></p>
-    
-           <br>
-           <div id="deleteMsg">
-                  <?php if(!empty($_SESSION['deleteMsg'])) { echo "<h5><font color='red'>".$_SESSION['deleteMsg']."</font></h5>"; } ?>
-        </div>
-        <?php unset($_SESSION['deleteMsg']); ?>
            <br>
            <br>
+            <br>
            <br>
-         
+           <br>
          
 
          </div> 

@@ -9,6 +9,13 @@ $fname = $rows['firstName'];
 $lname = $rows['lastName'];
 $courseCode= $_SESSION['courseCode'];
 ?>
+<?php
+$currentDate=date("Y-m-d");
+$sqlDateQuery = "SELECT date FROM date WHERE name='date_last'";
+$resultDateQuery = $link->query($sqlDateQuery);
+$rows99 = mysqli_fetch_array($resultDateQuery);
+$dateLast = $rows99['date'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -201,8 +208,12 @@ $courseCode= $_SESSION['courseCode'];
 		 echo "<td>"."<center>".$midMarks."</center>"."</td>";
 		 echo "<td>"."<center>".$endMarks."</center>"."</td>";
 		 echo "<td>"."<center>".$internalMarks."</center>"."</td>";
+		 if($currentDate<$dateLast){
 		 echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEnter.php?regNo='.$reg.'">'.'<button class="btn btn-default">Enter</button>'.'</a></center></td>';
 		 echo "<td><center>".'<a href="http://localhost/studentMarks/views/studentIndividualEntry.php?regNo='.$reg.'">'.'<button class="btn btn-default">Edit</button>'.'</a></center></td>';
+		 }else{
+		 	echo "<td><center><font color='red'>Not Allowed</font><center></td>";
+			echo "<td ><center><font color='red'>Not Allowed</font><center></td>";}
         echo "</tr>";
     }
 }else {

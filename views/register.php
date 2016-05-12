@@ -76,7 +76,7 @@
                         </option>
                         <option value="som">School of Management
                         </option>
-                        <option value="sict">School of Information and Communication Technology
+                        <option value="soict">School of Information and Communication Technology
                         </option>
                         <option value="sol">School of Law, Justice and Governance
                         </option>

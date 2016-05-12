@@ -7,8 +7,10 @@ $result = $link->query($sql_query);
 $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
+
 $courseCode= $_GET['id'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

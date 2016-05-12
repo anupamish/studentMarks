@@ -1,1 +1,39 @@
 branch_name,branch,school
+Computer Science,CS,SOICT
+Electronics and Communication,EC,SOICT
+M.Tech Software Engineering,MTSE,SOICT
+M.Tech Intelligent System and Robotics,MTISR,SOICT
+M.Tech Wireless Communication and Network,MTWCN,SOICT
+M.Tech VLSI Design,MTVLSI,SOICT
+M.Tech Computer Science,MTCS,SOICT
+M.Tech Embedded System,MTES,SOICT
+Biotechnology,BT,SOBT
+Architecture,AR,SOE
+Bachelor of Business Management,BBM,SOM
+Master of Business Administration,MBA,SOM
+Civil Engineering,CE,SOE
+Mechanical Engineering,ME,SOE
+Electrical Engineering,EE,SOE
+Msters in Urban and Regional Planning,MPLAN,SOE
+M.Tech Environment Engineering,MTEE,SOE
+M.Tech Structural Engineering,MTSTE,SOE
+M.Tech Power System Engineering,MTPSE,SOE
+M.Tech Instrumentation and Control,MTIC,SOE
+M.Tech Power Electronics and Drives,MTPED,SOE
+M.Tech Manufacturing Engineering,MTME,SOE
+M.Tech Design Engineering,MTDE,SOE
+M.A Economics Planning and Development,MAEPD,SOHSS
+M.A Hindi,MAH,SOHSS
+Master in Social Work,MSW,SOHSS
+M.A M.Sc Applied Psychology,MAP,SOHSS
+M.A Political Science and Iternational Relations,MPSIR,SOHSS
+M.Phil Clinical Psychology,MCP,SOHSS
+Food Processing and Technology,FPT,SVSAS
+M.Tech Food Processing and Technology,MFPT,SVSAS
+M.Sc Applied Chemistry,MAC,SVSAS
+M.Sc Applied Physics,MAPH,SVSAS
+M.Sc Applied Mathematics,MAM,SVSAS
+M.Sc Food Science,MFS,SVSAS
+B.A LL.B,BALLB,SLGJ
+B.A Buddhist Studies and Civilization,BBSC,SBSC
+M.A Buddhist Studies and Civilization,MBSC,SBSC

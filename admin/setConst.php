@@ -9,10 +9,15 @@ if(!isset($_SESSION['username'])){
 
 ?>
 <?php
-// to perfrom search
-if (isset($_POST['search'])){
-	 $searchString= $_POST['searchQuery'];
+if(isset($_POST['addSem'])){
+	$incQuery = "UPDATE student SET semester = semester+1 WHERE semester<10";
+	$incresult = $link ->query($incQuery);
+	if($incresult){
+		$_SESSION['addSem']="Semester value changed successflly.";
+	}else{
+		$_SESSION['addSem']="Semester value couldnt be changed.";
 	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,16 +86,16 @@ if (isset($_POST['search'])){
                         <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="http://localhost/studentMarks/admin/courseAdmin.php"><i class="fa fa-graduation-cap"></i> View Courses</a>
                     </li>
-                    <li>
+                    <li >
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-file-excel-o"></i> Calculate CGPA</a>
                     </li>
-                    <li>
+                    <li >
                             <a href="http://localhost/studentMarks/admin/uploadData.php"><i class="fa fa-fw fa-user"></i> Upload Data</a>
                    </li>
-                   <li>
+                   <li class="active">
                             <a href="http://localhost/studentMarks/admin/setConst.php"><i class="fa fa-fw fa-user"></i> Set Constraints</a>
                    </li>
                     <li>
@@ -105,107 +110,52 @@ if (isset($_POST['search'])){
 			<div id="container-fluid">
             <div class="container">
             <div>
-            <h3>Viewing all Courses in the system.</h3>
-            <hr>
-            <table class="table table-striped">
-            <form action="" method="post">
-            <tr>
-            <td><input type="text" name="searchQuery" placeholder="Enter either Username or Course Code to perform Search!" size="70"></td>
-            <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
-            <tr>
-            </form>
-            </table>
-            </div>
-            <hr>
-            <br>
-		<table class="table  table-striped">
-
-        <thead>
-
-            <tr>
-              <th><center>Course Code</center></th>  
-              <th><center>Course Name</center></th>
-              <th><center>Course Semester</center></th>
-              <th><center>Course Credits</center> </th>
-              <th><center>Course Owner</center> </th>
-              <th><center> Delete Course</center></th>  
-           </tr>
-           
-        </thead>
-        <tbody>
-        <?php
-
-        if(!isset($_POST['search'])){    
-        $sqlDetail = "SELECT  * FROM courses";
-             global $link;
-                $result1 = $link -> query($sqlDetail);           
-              if (mysqli_num_rows($result1) > 0) {
-               while($row2 = mysqli_fetch_array($result1)) {
-                $courseCode= $row2['course_code'];
-                $courseName =$row2['course_name'];
-                $courseSemester = $row2['semester'];
-                $courseCredits = $row2['credits'];
-                $courseUser = $row2['username'];
-               echo "<tr>";
-         echo "<td>"."<center>".$courseCode."</center>"."</td>";
-         echo "<td>"."<center>".$courseName."</center>"."</td>";
-         echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-         echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-         echo "<td>"."<center>".$courseUser."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-         echo "</tr>";
-    }
-}else {
-    echo "<tr>";
-    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-    echo "</tr>";
-      
-}}else{
-	$sqlDetail = "SELECT  * FROM courses WHERE course_code='$searchString' OR username='$searchString'";
-	global $link;
-	$result1 = $link -> query($sqlDetail);
-	if (mysqli_num_rows($result1) > 0) {
-		while($row2 = mysqli_fetch_array($result1)) {
-			$courseCode= $row2['course_code'];
-			$courseName =$row2['course_name'];
-			$courseSemester = $row2['semester'];
-			$courseCredits = $row2['credits'];
-			$courseUser = $row2['username'];
-			echo "<tr>";
-			echo "<td>"."<center>".$courseCode."</center>"."</td>";
-			echo "<td>"."<center>".$courseName."</center>"."</td>";
-			echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-			echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-			echo "<td>"."<center>".$courseUser."</center>"."</td>";
-			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-			echo "</tr>";
-		}
-	}else {
-		echo "<tr>";
-		echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-		echo "</tr>";
-	
-	}
-}
-
-?>
-
-        </tbody>
-
-    </table>
-       	<p><i>Note: Deleting the course will result in deletion of all the data for the course owned by the specified user.</i></p>
-    
-           <br>
-           <div id="deleteMsg">
-                  <?php if(!empty($_SESSION['deleteMsg'])) { echo "<h5><font color='red'>".$_SESSION['deleteMsg']."</font></h5>"; } ?>
+       		<h3>Set Constraints.</h3>
+       		<hr>
+       		<h4>1. Change the Semester (Odd/Even) for students in the system.</h4>
+       		<table class="table table-striped">
+       		<tr>
+       		<form action=" " method="post" enctype="multipart/form-data">
+       		<td><h5>Transfer students to the next semester: </h5>
+       		</td>
+       		<td>
+       		<input type="submit" class= "btn btn-primary" value="Change Semester" name="addSem">
+       		</td>
+       		</form>
+       		</tr>
+       		</table>
+       		<br>
+       		<div id="addSem">
+                  <?php if(!empty($_SESSION['addSem'])) { echo "<h4><font color='green'>".$_SESSION['addSem']."</font></h4>"; } ?>
         </div>
-        <?php unset($_SESSION['deleteMsg']); ?>
+        <?php unset($_SESSION['addSem']); ?>
+       		<hr>
+       		<h4>2. Set last date for marks entry by Teacher.</h4>
+       		<table class="table table-striped">
+       		<form action="http://localhost/studentMarks/phpIncludes/addDate.php" method="post" enctype="multipart/form-data">
+       		<tr>
+       		<td><h5>Last Date: </h5>
+       		</td>
+       		<td>
+       		<input type="date" name="dateLast">
+       		</td>
+       		<td>
+       		<input type="submit" class= "btn btn-primary" value="Set Last Date" name="dateSubmit">
+       		</td>
+       		</tr>
+       		</form>
+       		</table>
+       		
+           <br>
+           <div id="dateAdded">
+                  <?php if(!empty($_SESSION['dateAdded'])) { echo "<h4><font color='green'>".$_SESSION['dateAdded']."</font></h4>"; } ?>
+        </div>
+        <?php unset($_SESSION['dateAdded']); ?>
+            <br>
            <br>
            <br>
-           <br>
-         
-         
-
+                  
+</div>
          </div> 
         </div>
         <!-- /#page-wrapper -->

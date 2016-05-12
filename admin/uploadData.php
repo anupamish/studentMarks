@@ -8,12 +8,6 @@ if(!isset($_SESSION['username'])){
 }
 
 ?>
-<?php
-// to perfrom search
-if (isset($_POST['search'])){
-	 $searchString= $_POST['searchQuery'];
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,13 +75,13 @@ if (isset($_POST['search'])){
                         <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
  View Users</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="http://localhost/studentMarks/admin/courseAdmin.php"><i class="fa fa-graduation-cap"></i> View Courses</a>
                     </li>
-                    <li>
+                    <li >
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-file-excel-o"></i> Calculate CGPA</a>
                     </li>
-                    <li>
+                    <li class="active">
                             <a href="http://localhost/studentMarks/admin/uploadData.php"><i class="fa fa-fw fa-user"></i> Upload Data</a>
                    </li>
                    <li>
@@ -105,106 +99,59 @@ if (isset($_POST['search'])){
 			<div id="container-fluid">
             <div class="container">
             <div>
-            <h3>Viewing all Courses in the system.</h3>
-            <hr>
-            <table class="table table-striped">
-            <form action="" method="post">
-            <tr>
-            <td><input type="text" name="searchQuery" placeholder="Enter either Username or Course Code to perform Search!" size="70"></td>
-            <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
-            <tr>
-            </form>
-            </table>
-            </div>
-            <hr>
-            <br>
-		<table class="table  table-striped">
-
-        <thead>
-
-            <tr>
-              <th><center>Course Code</center></th>  
-              <th><center>Course Name</center></th>
-              <th><center>Course Semester</center></th>
-              <th><center>Course Credits</center> </th>
-              <th><center>Course Owner</center> </th>
-              <th><center> Delete Course</center></th>  
-           </tr>
-           
-        </thead>
-        <tbody>
-        <?php
-
-        if(!isset($_POST['search'])){    
-        $sqlDetail = "SELECT  * FROM courses";
-             global $link;
-                $result1 = $link -> query($sqlDetail);           
-              if (mysqli_num_rows($result1) > 0) {
-               while($row2 = mysqli_fetch_array($result1)) {
-                $courseCode= $row2['course_code'];
-                $courseName =$row2['course_name'];
-                $courseSemester = $row2['semester'];
-                $courseCredits = $row2['credits'];
-                $courseUser = $row2['username'];
-               echo "<tr>";
-         echo "<td>"."<center>".$courseCode."</center>"."</td>";
-         echo "<td>"."<center>".$courseName."</center>"."</td>";
-         echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-         echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-         echo "<td>"."<center>".$courseUser."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-         echo "</tr>";
-    }
-}else {
-    echo "<tr>";
-    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-    echo "</tr>";
-      
-}}else{
-	$sqlDetail = "SELECT  * FROM courses WHERE course_code='$searchString' OR username='$searchString'";
-	global $link;
-	$result1 = $link -> query($sqlDetail);
-	if (mysqli_num_rows($result1) > 0) {
-		while($row2 = mysqli_fetch_array($result1)) {
-			$courseCode= $row2['course_code'];
-			$courseName =$row2['course_name'];
-			$courseSemester = $row2['semester'];
-			$courseCredits = $row2['credits'];
-			$courseUser = $row2['username'];
-			echo "<tr>";
-			echo "<td>"."<center>".$courseCode."</center>"."</td>";
-			echo "<td>"."<center>".$courseName."</center>"."</td>";
-			echo "<td>"."<center>".$courseSemester."</center>"."</td>";
-			echo "<td>"."<center>".$courseCredits."</center>"."</td>";
-			echo "<td>"."<center>".$courseUser."</center>"."</td>";
-			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteCourse.php?courseCode='.$courseCode.'&username='.$courseUser.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-			echo "</tr>";
-		}
-	}else {
-		echo "<tr>";
-		echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-		echo "</tr>";
-	
-	}
-}
-
-?>
-
-        </tbody>
-
-    </table>
-       	<p><i>Note: Deleting the course will result in deletion of all the data for the course owned by the specified user.</i></p>
-    
+       		<h3>Upload data for various Tables.</h3>
+       		<hr>
+       		<h4>1. Upload data into the <u>"branch"</u> table.</h4>
+       		<table class="table table-striped">
+       		<form action="http://localhost/studentMarks/phpIncludes/uploadCSV.php" method="post" enctype="multipart/form-data">
+       		<tr>
+       		<td><h5>Select CSV file to upload: </h5>
+       		</td>
+       		<td> <input type="file" name="fileToUpload" id="fileToUpload">
+       		</td>
+       		<td>
+       		<input type="submit" class= "btn btn-primary" value="Upload CSV" name="submitBranch">
+       		</td>
+       		</tr>
+       		</form>
+       		</table>
+       		<hr>
+       		<h4>2. Upload data into the <u>"student"</u> table.</h4>
+       		<table class="table table-striped">
+       		<form action="http://localhost/studentMarks/phpIncludes/uploadCSV.php" method="post" enctype="multipart/form-data">
+       		<tr>
+       		<td><h5>Select CSV file to upload: </h5>
+       		</td>
+       		<td> <input type="file" name="fileToUpload" id="fileToUpload">
+       		</td>
+       		<td>
+       		<input type="submit" class= "btn btn-primary" value="Upload CSV" name="submitStudent">
+       		</td>
+       		</tr>
+       		</form>
+       		</table>
            <br>
-           <div id="deleteMsg">
-                  <?php if(!empty($_SESSION['deleteMsg'])) { echo "<h5><font color='red'>".$_SESSION['deleteMsg']."</font></h5>"; } ?>
+           <div id="errormessage">
+                  <?php if(!empty($_SESSION['errormessage1'])) { echo "<h4><font color='red'>".$_SESSION['errormessage1']."</font></h4>"; } ?>
         </div>
-        <?php unset($_SESSION['deleteMsg']); ?>
+        <div id="errormessage2">
+                  <?php if(!empty($_SESSION['errormessage2'])) { echo "<h4><font color='red'>".$_SESSION['errormessage2']."</font></h4>"; } ?>
+        </div>
+        <div id="querymessage">
+                  <?php if(!empty($_SESSION['querymessage'])) { echo "<h4><font color='green'>".$_SESSION['querymessage']."</font></h4>"; } ?>
+        </div>
+        <?php unset($_SESSION['querymessage']); ?>
+        <?php unset($_SESSION['errormessage1']); ?>
+        <?php unset($_SESSION['errormessage2']); ?>
+        
+           <br>
+           <hr>
+           <p><i>Note*: Before uploading data through files. Please check that the format of your CSV files matches the format specified by the Developer. Also keep constraints like Primary Keys, Unique Keys,etcetra in check.</i></p>
+           <br>
+            <br>
            <br>
            <br>
-           <br>
-         
-         
+                  
 
          </div> 
         </div>

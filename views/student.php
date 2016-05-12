@@ -116,14 +116,13 @@ td {padding:5px; }
   <div class="row">
     <div class="col-xs-12">
       <div class="table-responsive">
-        <table class="table table-bordred table-striped">
-        
-          <tbody>
+        <table class="table table-striped">
+        <tbody>
             <tr>
 			<form action="" method="get" >
               <td><label>School:
                     </label></td>
-              <td><select  name="school" class = "demoInputBox" onChange="getState(this.value);">
+              <td><select  name="school" class = "demoInputBox">
 						<option value="">All</option>
                         <option value="soe">School of Engineering
                         </option>
@@ -152,12 +151,11 @@ td {padding:5px; }
                 <option value="">All</option>
                 </select></td>
                 <td><div class= "control-group">
-                <button type="submit" class="btn btn-primary btn-large btn-block">Show</button>
+                <button type="submit" class="btn btn-primary">Show</button>
                 </div></td>
 			</form>
             </tr>
           </tbody>
-          
         </table>
       </div>
     </div>

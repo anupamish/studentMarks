@@ -84,10 +84,13 @@ if (isset($_POST['search'])){
                         <a href="http://localhost/studentMarks/admin/courseAdmin.php"><i class="fa fa-graduation-cap"></i> View Courses</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-file-excel-o"></i> Page 3</a>
+                        <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-file-excel-o"></i> Calculate CGPA</a>
                     </li>
                     <li>
-                            <a href=""><i class="fa fa-fw fa-user"></i> Page 4</a>
+                            <a href="http://localhost/studentMarks/admin/uploadData.php"><i class="fa fa-fw fa-user"></i> Upload Data</a>
+                   </li>
+                   <li>
+                            <a href="http://localhost/studentMarks/admin/setConst.php"><i class="fa fa-fw fa-user"></i> Set Constraints</a>
                    </li>
                     <li>
                             <a href="http://localhost/studentMarks/admin/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
@@ -103,14 +106,16 @@ if (isset($_POST['search'])){
             <div class="container">
             <h3>Viewing all Users in the system.</h3>
             <hr>
+            
             <table class="table table-striped">
             <form action="" method="post">
             <tr>
             <td><input type="text" name="searchQuery" placeholder="Enter either First Name,Last Name or Email to perform Search!" size="70"></td>
             <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
-            <tr>
+            </tr>
             </form>
             </table>
+            
             <hr>
             <br>
 <table class="table  table-striped">
@@ -197,7 +202,7 @@ if (isset($_POST['search'])){
            <br>
          
          
-
+	</div>
         </div>   
         </div>
         <!-- /#page-wrapper -->
