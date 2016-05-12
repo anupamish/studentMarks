@@ -110,7 +110,9 @@ $studentSchool= $rowStudentDetails['college'];
 <tr><th><center>CGPA: <?php echo $cgpa;?></center></th></tr>
 </thead>
 </table>
+</center>
 <h5>Issued on: <?php echo date("d-m-Y")?></h5>
+<center>
 <hr>
 <a href="javascript: window.print()"><span class="glyphicon glyphicon-print" ></span></a>
 </center>

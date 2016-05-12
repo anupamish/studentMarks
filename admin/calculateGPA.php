@@ -143,7 +143,7 @@ if(!isset($_SESSION['username'])){
 			?>
 </select></td>
 			<td><div class= "control-group">
-                <button type="submit" name="submit" class="btn btn-primary">Show</button>
+                <button type="submit" name="submit" class="btn btn-primary">Calculate</button>
                 </div></td>
 			</form>
 			</tr>
@@ -175,8 +175,8 @@ if(!isset($_SESSION['username'])){
         	$selectStudents="SELECT regNo,stuFirstName,stuLastName from student WHERE semester='$semester' AND branch='$branch'";
         	$resultselectStudents=$link->query($selectStudents);
         	if (mysqli_num_rows($resultselectStudents) > 0) {
-        		$queryGPAInsert1="TRUNCATE TABLE cgpa";
-        		$resultGPAInsert1 = $link->query($queryGPAInsert1);
+        		//$queryGPAInsert1="TRUNCATE TABLE cgpa";
+        		//$resultGPAInsert1 = $link->query($queryGPAInsert1);
         		$gpa=0;
         		while($row = mysqli_fetch_array($resultselectStudents)) {
         			$regNo =$row['regNo'];
@@ -202,7 +202,7 @@ if(!isset($_SESSION['username'])){
         
         				}
         				$gpa = $num/$denum;
-        				$queryGPAInsert2="INSERT INTO cgpa(regNo,cgpa) VALUES('$regNo','$gpa')";
+        				$queryGPAInsert2="INSERT INTO cgpa(regNo,cgpa) VALUES('$regNo','$gpa') ON DUPLICATE KEY UPDATE cgpa='$gpa'";
         				$resultGPAInsert2 = $link->query($queryGPAInsert2);
         			}
         			 

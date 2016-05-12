@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2016 at 07:59 PM
+-- Generation Time: May 12, 2016 at 11:44 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -80,6 +80,29 @@ INSERT INTO `branch` (`branch_name`, `branch`, `school`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cgpa`
+--
+
+CREATE TABLE IF NOT EXISTS `cgpa` (
+  `regNo` varchar(15) NOT NULL,
+  `cgpa` float NOT NULL,
+  PRIMARY KEY (`regNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cgpa`
+--
+
+INSERT INTO `cgpa` (`regNo`, `cgpa`) VALUES
+('12ics004', 8),
+('12ics008', 10),
+('12ics033', 8.28571),
+('12ics039', 8),
+('15ics055', 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
@@ -139,12 +162,13 @@ CREATE TABLE IF NOT EXISTS `marks` (
 --
 
 INSERT INTO `marks` (`course_code`, `regNo`, `midMarks`, `internalMarks`, `endMarks`) VALUES
+('CS102', '12ics033', 20, 20, 20),
 ('CS102', '15ics055', 21, 20, 22),
 ('MA202', '14ics045', 20, 20, 33),
 ('MA402', '12ics004', 20, 15, 40),
 ('MA402', '12ics008', 25, 25, 49),
 ('MA402', '12ics033', 25, 25, 50),
-('MA402', '12ics039', 5, 5, 5);
+('MA402', '12ics039', 20, 20, 35);
 
 -- --------------------------------------------------------
 
