@@ -55,7 +55,7 @@ if (isset($_POST['search'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/studentMarks/views/adminLanding.php">Student Result Processing System-Admin Panel</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/admin/adminLanding.php">Student Result Processing System-Admin Panel</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -87,6 +87,9 @@ if (isset($_POST['search'])){
                     <li>
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-calculator"></i> Calculate CGPA</a>
                     </li>
+                    <li>
+                            <a href="http://localhost/studentMarks/admin/printMarksheet.php"><i class="fa fa-print"></i> Print Marksheet</a>
+                   </li>
                     <li>
                             <a href="http://localhost/studentMarks/admin/uploadData.php"><i class="fa fa-upload"></i> Upload Data</a>
                    </li>

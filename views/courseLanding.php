@@ -59,7 +59,7 @@ $courseCode= $_GET['id'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/studentMarks/views/landingPageMain.php">Student Result Processing System</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/admin/adminLanding.php">Student Result Processing System</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

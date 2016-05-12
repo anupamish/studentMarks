@@ -1,13 +1,15 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+include("../phpIncludes/calculateGrade.php");
 if(!isset($_SESSION['username'])){
 	header("Location: http://localhost/studentMarks/admin/index.php");
 }else{
 	
 }
-
 ?>
+<!-- -Fetch Data -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +51,7 @@ if(!isset($_SESSION['username'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/studentMarks/views/adminLanding.php">Student Result Processing System-Admin Panel</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/admin/adminLanding.php">Student Result Processing System-Admin Panel</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -82,6 +84,9 @@ if(!isset($_SESSION['username'])){
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-calculator"></i> Calculate CGPA</a>
                     </li>
                     <li>
+                            <a href="http://localhost/studentMarks/admin/printMarksheet.php"><i class="fa fa-print"></i> Print Marksheet</a>
+                   </li>
+                    <li>
                             <a href="http://localhost/studentMarks/admin/uploadData.php"><i class="fa fa-upload"></i> Upload Data</a>
                    </li>
                    <li>
@@ -99,7 +104,7 @@ if(!isset($_SESSION['username'])){
 			<div id="container-fluid">
             <div class="container">
             <div>
-       		<h3>Calcuate CGPA for Students</h3>
+       		<h3>Calculate CGPA for Students</h3>
        		<hr>
        		<div class="row">
     <div class="col-xs-12">
@@ -112,27 +117,28 @@ if(!isset($_SESSION['username'])){
 			<td><label>Semester:
                     </label></td>
              <td><select name="semester">
-			<?php 
-			$sqlFill ="SELECT semester FROM student";
-			$result = $link->query($sqlFill);
-			while ($row = mysqli_fetch_array($result)){
-				$semester= $row['semester'];
-				
-			echo '<option value="'.$semester.'">'.$semester.'</option>';
-			}
-			?>
-</select></td>
+			<option value="1">1</option>;
+			<option value="2">2</option>;
+			<option value="3">3</option>;
+			<option value="4">4</option>;
+			<option value="5">5</option>;
+			<option value="6">6</option>;
+			<option value="7">7</option>;
+			<option value="8">8</option>;
+			<option value="9">9</option>;
+			<option value="10">10</option>;
+			</select></td>
 <td><label>Branch:
                     </label></td>
              <td><select name="branch">
 			<?php 
-			$sqlFill ="SELECT branch FROM student AND SELECT branch_name FROM branch WHERE branch IN (SELECT branch FROM student)";
+			$sqlFill = "SELECT branch,branch_name FROM branch ";
 			$result = $link->query($sqlFill);
 			while ($row = mysqli_fetch_array($result)){
 				$branch= $row['branch'];
 				$branchName = $row['branch_name'];
 				
-			echo '<option value="'.$branch.'">'.$semester.'</option>';
+			echo '<option value="'.$branch.'">'.$branchName.'</option>';
 			}
 			?>
 </select></td>
@@ -143,11 +149,100 @@ if(!isset($_SESSION['username'])){
 			</tr>
 			</tbody>
 			</table>
-			<?php
-			if(isset($_GET['submit'])){
-				$_SESSION['chartcoursecode']=$_GET['course'];
-			}
-			?>
+			<hr>
+			<table class="table table-bordred table-striped">
+
+        <thead>
+
+            <tr>
+
+              <th><center>Registration No.</center></th>  
+              <th><center>Student Name</center></th>
+              <th><center>CGPA</center></th>
+              		  	
+            </tr>
+           
+        </thead>
+
+        <tbody>
+        <?php
+        if(isset($_GET['submit'])){
+        	$semester = $_GET['semester'];
+        	$branch = $_GET['branch'];
+        	$num =0;
+        	$denum =0;
+        	$gpa=0;
+        	$selectStudents="SELECT regNo,stuFirstName,stuLastName from student WHERE semester='$semester' AND branch='$branch'";
+        	$resultselectStudents=$link->query($selectStudents);
+        	if (mysqli_num_rows($resultselectStudents) > 0) {
+        		$queryGPAInsert1="TRUNCATE TABLE cgpa";
+        		$resultGPAInsert1 = $link->query($queryGPAInsert1);
+        		$gpa=0;
+        		while($row = mysqli_fetch_array($resultselectStudents)) {
+        			$regNo =$row['regNo'];
+        			$stuFirstName = $row['stuFirstName'];
+        			$stuLastName = $row['stuLastName'];
+        			$selectMarks = "SELECT course_code,midMarks,internalMarks,endMarks FROM marks WHERE regNo='$regNo'";
+        			$resultselectMarks=$link->query($selectMarks);
+        
+        			if (mysqli_num_rows($resultselectMarks) > 0) {
+        				$num =0;
+        				$denum=0;
+        				while($row2 = mysqli_fetch_array($resultselectMarks)) {
+        					$courseCode= $row2['course_code'];
+        					$totalMarks=$row2['midMarks']+$row2['endMarks']+$row2['internalMarks'];
+        					$selectCourse = "SELECT credits FROM courses WHERE course_code='$courseCode'";
+        					$resultselectCourse=$link->query($selectCourse);
+        					$row3= mysqli_fetch_array($resultselectCourse);
+        					$courseCredits = $row3['credits'];
+        					$multiplyingFactor = setGrade($totalMarks);
+        					$num=$num+($courseCredits*$multiplyingFactor);
+        					$denum=$denum+ $courseCredits;
+        
+        
+        				}
+        				$gpa = $num/$denum;
+        				$queryGPAInsert2="INSERT INTO cgpa(regNo,cgpa) VALUES('$regNo','$gpa')";
+        				$resultGPAInsert2 = $link->query($queryGPAInsert2);
+        			}
+        			 
+        		}
+        		 
+        	}		
+			$sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
+			 global $link;
+                $result1 = $link -> query($sqlDetail);           
+              if (mysqli_num_rows($result1) > 0) {
+               while($row2 = mysqli_fetch_array($result1)) {
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+				$sqlMarks ="SELECT cgpa FROM cgpa WHERE regNo='$reg'";
+				$result2 = $link->query($sqlMarks);
+				$rows3 = mysqli_fetch_array($result2);
+				$cgpa=$rows3['cgpa'];
+				
+               echo "<tr>";
+         echo "<td>"."<center>".$reg."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+		 echo "<td>"."<center>".$cgpa."</center>"."</td>";
+		 echo "</tr>";
+    }
+}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";
+      
+}}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";}
+
+?>
+
+        </tbody>
+
+    </table>
 			</div>
 			</div>
 			</div>

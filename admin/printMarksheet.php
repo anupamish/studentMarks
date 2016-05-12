@@ -1,18 +1,15 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+include("../phpIncludes/calculateGrade.php");
 if(!isset($_SESSION['username'])){
 	header("Location: http://localhost/studentMarks/admin/index.php");
 }else{
 	
 }
 ?>
-<?php
-// to perfrom search
-if (isset($_POST['search'])){
-	 $searchString= $_POST['searchQuery'];
-	}
-?>
+<!-- -Fetch Data -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +51,7 @@ if (isset($_POST['search'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/studentMarks/views/adminLanding.php">Student Result Processing System-Admin Panel</a>
+                <a class="navbar-brand" href="http://localhost/studentMarks/admin/adminLanding.php">Student Result Processing System-Admin Panel</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -76,7 +73,7 @@ if (isset($_POST['search'])){
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li >
                         <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-fw fa-user"></i>
  View Users</a>
                     </li>
@@ -86,7 +83,7 @@ if (isset($_POST['search'])){
                     <li>
                         <a href="http://localhost/studentMarks/admin/calculateGPA.php"><i class="fa fa-calculator"></i> Calculate CGPA</a>
                     </li>
-                    <li>
+                    <li class="active">
                             <a href="http://localhost/studentMarks/admin/printMarksheet.php"><i class="fa fa-print"></i> Print Marksheet</a>
                    </li>
                     <li>
@@ -105,108 +102,123 @@ if (isset($_POST['search'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-
             <div class="container">
-            <h3>Viewing all Users in the system.</h3>
-            <hr>
-            
-            <table class="table table-striped">
-            <form action="" method="post">
+            <div>
+       		<h3>Print Marksheet for Students</h3>
+       		<hr>
+       		<div class="row">
+    <div class="col-xs-12">
+      <div >
+        <table class="table">
+        
+          <tbody>
             <tr>
-            <td><input type="text" name="searchQuery" placeholder="Enter either First Name,Last Name or Email to perform Search!" size="70"></td>
-            <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
-            </tr>
-            </form>
-            </table>
-            
-            <hr>
-            <br>
-<table class="table  table-striped">
+			<form action="" method="get" >
+			<td><label>Semester:
+                    </label></td>
+             <td><select name="semester">
+			<option value="1">1</option>;
+			<option value="2">2</option>;
+			<option value="3">3</option>;
+			<option value="4">4</option>;
+			<option value="5">5</option>;
+			<option value="6">6</option>;
+			<option value="7">7</option>;
+			<option value="8">8</option>;
+			<option value="9">9</option>;
+			<option value="10">10</option>;
+			</select></td>
+<td><label>Branch:
+                    </label></td>
+             <td><select name="branch">
+			<?php 
+			$sqlFill = "SELECT branch,branch_name FROM branch ";
+			$result = $link->query($sqlFill);
+			while ($row = mysqli_fetch_array($result)){
+				$branch= $row['branch'];
+				$branchName = $row['branch_name'];
+				
+			echo '<option value="'.$branch.'">'.$branchName.'</option>';
+			}
+			?>
+</select></td>
+			<td><div class= "control-group">
+                <button type="submit" name="submit" class="btn btn-primary">Show</button>
+                </div></td>
+			</form>
+			</tr>
+			</tbody>
+			</table>
+			<hr>
+			<table class="table table-bordred table-striped">
 
         <thead>
 
             <tr>
 
-              <th><center>Email</center></th>  
-              <th><center>First Name</center></th>
-              <th><center>Last Name</center></th>
-              <th><center>School</center> </th>
-              <th><center> Delete User</center></th>              
-                
+              <th><center>Registration No.</center></th>  
+              <th><center>Student Name</center></th>
+              <th><center>CGPA</center></th>
+              		  	
             </tr>
            
         </thead>
 
         <tbody>
         <?php
-			if(!isset($_POST['search'])){
-            $sqlDetail = "SELECT email,firstName,lastName,school FROM users";
-             global $link;
+        if(isset($_GET['submit'])){
+        	$semester = $_GET['semester'];
+        	$branch = $_GET['branch'];
+ 			$sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
+			 global $link;
                 $result1 = $link -> query($sqlDetail);           
               if (mysqli_num_rows($result1) > 0) {
                while($row2 = mysqli_fetch_array($result1)) {
-                $email= $row2['email'];
-                $fname =$row2['firstName'];
-                $lname = $row2['lastName'];
-                $school = $row2['school'];
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+				$sqlMarks ="SELECT cgpa FROM cgpa WHERE regNo='$reg'";
+				$result2 = $link->query($sqlMarks);
+				$rows3 = mysqli_fetch_array($result2);
+				$cgpa=$rows3['cgpa'];
+				
                echo "<tr>";
-         echo "<td>"."<center>".$email."</center>"."</td>";
-        echo "<td>"."<center>".$fname."</center>"."</td>";
-         echo "<td>"."<center>".$lname."</center>"."</td>";
-         echo "<td>"."<center>".strtoupper($school)."</center>"."</td>";
-         echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-        echo "</tr>";
+       echo "<td>"."<center>".'<a href="http://localhost/studentMarks/admin/studentMarksheet.php?reg=' . $reg . '">'.$reg.'</a>'."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+		 echo "<td>"."<center>".$cgpa."</center>"."</td>";
+		 echo "</tr>";
     }
 }else {
-    echo "<tr>";
+	echo "<tr>";
     echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-    echo "</tr>";
+	echo "</tr>";
       
-}}else{
-	$sqlDetail = "SELECT email,firstName,lastName,school FROM users WHERE firstName='$searchString' OR lastName='$searchString' OR email='$searchString'";
-	global $link;
-	$result1 = $link -> query($sqlDetail);
-	if (mysqli_num_rows($result1) > 0) {
-		while($row2 = mysqli_fetch_array($result1)) {
-			$email= $row2['email'];
-			$fname =$row2['firstName'];
-			$lname = $row2['lastName'];
-			$school = $row2['school'];
-			echo "<tr>";
-			echo "<td>"."<center>".$email."</center>"."</td>";
-			echo "<td>"."<center>".$fname."</center>"."</td>";
-			echo "<td>"."<center>".$lname."</center>"."</td>";
-			echo "<td>"."<center>".strtoupper($school)."</center>"."</td>";
-			echo "<td><center>".'<a href="http://localhost/studentMarks/phpIncludes/deleteUser.php?userName='.$email.'">'.'<button class="btn btn-default">Delete</button>'.'</a></center></td>';
-			echo "</tr>";
-		}
-	}else {
-		echo "<tr>";
-		echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
-		echo "</tr>";
-	
-	}
-}
+}}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";}
 
 ?>
 
         </tbody>
 
     </table>
-       	<p><i>Note: Deleting the user will result in deletion of all the data being held by the user in the system.</i></p>
-    
+			</div>
+			</div>
+			</div>
+			</div>
            <br>
-           <div id="deleteMsg">
-                  <?php if(!empty($_SESSION['deleteMsg'])) { echo "<h5><font color='red'>".$_SESSION['deleteMsg']."</font></h5>"; } ?>
-        </div>
-        <?php unset($_SESSION['deleteMsg']); ?>
            <br>
+           <br>
+            <br>
+           <br>
+           <br>
+            <br>
            <br>
            <br>
          
-         
-	</div>
-        </div>   
+
+         </div> 
         </div>
         <!-- /#page-wrapper -->
 
