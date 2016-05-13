@@ -32,6 +32,43 @@ $studentSemester= $rowStudentDetails['semester'];
 <style type="text/css" media="print">
   @page { size: landscape; }
 </style>
+<style type="text/css">
+.container {
+    width: 600px;
+}
+.left {
+    max-width: 100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    float: left;
+}
+.left1 {
+    max-width: 100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    float: left;
+}
+.right {
+    
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    text-align: center;
+}
+.right1 {
+    
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    text-align: right;
+}
+</style>
 <!-- Bootstrap Core CSS -->
     <link href="http://localhost/studentMarks/sideBar/css/bootstrap.min.css" rel="stylesheet">
 
@@ -45,12 +82,24 @@ $studentSemester= $rowStudentDetails['semester'];
 
 </head>
 <body>
-<center>
-<img src="http://localhost/studentMarks/imageResources/gbu.png" width="100" height="101"/>
+<div class="container">
+<div class="left"><img src="http://localhost/studentMarks/imageResources/gbu.png" width="130" height="131" style="padding:10px;"/></div>
+<div class="right">
 <h1><strong><u>GAUTAM BUDDHA UNIVERSITY</u></strong></h1>
 <h3> Gautam Budh Nagar, Uttar Pradesh-201312 (INDIA)</h3>
 <h3>STATEMENT OF GRADES (2015-2016)</h3>
-<u><h4>Name of Student: <?php echo $studentName;?>, Enrollment Number: <?php echo $regNo;?>, Branch: <?php echo $studentBranch;?>, Name of School: <?php echo $studentSchool;?></u></h4>
+</div>
+</div>
+
+<div class="container">
+<div class="left1"><h4>Name of Student: <?php echo $studentName;?></h4></div>
+<div class="right1"><h4>Name of School: <?php echo $studentSchool;?></h4></div>
+</div>
+<div class="container">
+<div class="left1"><h4>Enrollment Number: <?php echo $regNo;?></h4></div>
+<div class="right1"><h4>Branch: <?php echo $studentBranch;?></h4></div>
+</div>
+<center>
 <table class="table table-striped">
 <thead>
 <tr><th><center>Semester: <?php echo $studentSemester;?></center></th></tr>
@@ -117,7 +166,12 @@ $studentSemester= $rowStudentDetails['semester'];
 </thead>
 </table>
 </center>
-<h5>Issued on: <?php echo date("d-m-Y")?></h5>
+<br>
+<div class="container">
+<div class="left1"><h5>Issued on: <?php echo date("d-m-Y")?></h5></div>
+<div class="right1"><h5>Registrar</h5></div>
+</div>
+
 <center>
 <hr>
 <a href="javascript: window.print()"><span class="glyphicon glyphicon-print" ></span></a>
