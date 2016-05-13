@@ -40,14 +40,16 @@ if($imageFileType != "csv") {
 $filename=$_FILES['fileToUpload']['name'];
 //Code to insert into table.
 if (isset($_POST['submitBranch'])){
-	$sql_query_1 = "TRUNCATE TABLE branch";
 	$sql_query_2="LOAD DATA INFILE 'C://wamp/www/studentMarks/csv/".$filename."'
-				  INTO TABLE branch 
+				  REPLACE INTO TABLE branch 
 				  FIELDS TERMINATED BY ',' 
 				  ENCLOSED BY ''
 				  LINES TERMINATED BY '\n'
-				  IGNORE 1 ROWS";
-	$result1 = $link->query($sql_query_1);
+				  IGNORE 1 ROWS(
+        			branch_name, 
+        			branch,school
+    			)
+			";
 	$result2 = $link->query($sql_query_2);
 	if($result2){
 		$_SESSION['querymessage']="Data Imported Successfully.";
@@ -57,14 +59,16 @@ if (isset($_POST['submitBranch'])){
 		header("location: http://localhost/studentMarks/admin/uploadData.php");
 	}
 }else if(isset($_POST['submitStudent'])){
-	$sql_query_1 = "TRUNCATE TABLE student";
 	$sql_query_2="LOAD DATA INFILE 'C://wamp/www/studentMarks/csv/".$filename."'
-				  INTO TABLE student 
+				  REPLACE INTO TABLE student 
 				  FIELDS TERMINATED BY ',' 
 				  ENCLOSED BY ''
 				  LINES TERMINATED BY '\n'
-				  IGNORE 1 ROWS";
-	$result1 = $link->query($sql_query_1);
+				  IGNORE 1 ROWS(
+        			regNo, 
+        			stuFirstName,stuLastName,college,branch,semester
+    			)
+			";
 	$result2 = $link->query($sql_query_2);
 	if($result2){
 		$_SESSION['querymessage']="Data Imported Successfully.";

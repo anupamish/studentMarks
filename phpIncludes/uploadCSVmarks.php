@@ -41,7 +41,7 @@ $filename=$_FILES['fileToUpload']['name'];
 //Code to insert into table.
 if (isset($_POST['submitMarks'])){
 	$sql_query_1="LOAD DATA INFILE 'C://wamp/www/studentMarks/csv/import/".$filename."'
-				  REPLACE INTO TABLE `marks_import`
+				  REPLACE INTO TABLE `marks`
     			  FIELDS TERMINATED BY ',' 
 				  ENCLOSED BY ''
 				  LINES TERMINATED BY '\n'
