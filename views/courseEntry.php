@@ -87,7 +87,7 @@ $dateLast = $rows99['date'];
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="http://localhost/studentMarks/admin/adminLanding.php" ><i class="fa fa-book"></i>
+                        <a href="http://localhost/studentMarks/views/landingPageMain.php" ><i class="fa fa-book"></i>
  Courses</a>
                     </li>
                     <li>

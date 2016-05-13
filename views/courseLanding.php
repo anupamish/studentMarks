@@ -136,11 +136,22 @@ $courseCode= $_GET['id'];
 			<td><a href="http://localhost/studentMarks/views/viewMarksCourse.php">View Marks Entered</a></td>
 			</tr>
 			<tr>
-			<td><a href="http://localhost/studentMarks/phpIncludes/csvExport.php">Export Data in Excel Sheet</a></td></tr>
-			</tbody>
+			<td><a href="http://localhost/studentMarks/phpIncludes/csvExport.php">Export Data in Excel Sheet</a></td>
+			</tr>
+			<tr>
+			<form action="http://localhost/studentMarks/phpIncludes/uploadCSVmarks.php" method="post" enctype="multipart/form-data">
+       		<td><h5>Select CSV file to upload marks: </h5>
+       		</td>
+       		<td> <input type="file" name="fileToUpload" id="fileToUpload">
+       		</td>
+       		<td>
+       		<input type="submit" class= "btn btn-primary" value="Upload CSV" name="submitMarks">
+       		</td>
+       		</tr>
+       		</tbody>
 			</table>
 			<br>
-			
+			 
 			<br>
 			                 
 

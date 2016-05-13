@@ -19,6 +19,7 @@ $rowStudentDetails = mysqli_fetch_array($resultStudentDetails);
 $studentName = $rowStudentDetails['stuFirstName']." ".$rowStudentDetails['stuLastName'];
 $studentBranch = $rowStudentDetails['branch'];
 $studentSchool= $rowStudentDetails['college'];
+$studentSemester= $rowStudentDetails['semester'];
 ?>
 <html>
 <head>
@@ -50,6 +51,11 @@ $studentSchool= $rowStudentDetails['college'];
 <h3> Gautam Budh Nagar, Uttar Pradesh-201312 (INDIA)</h3>
 <h3>STATEMENT OF GRADES (2015-2016)</h3>
 <u><h4>Name of Student: <?php echo $studentName;?>, Enrollment Number: <?php echo $regNo;?>, Branch: <?php echo $studentBranch;?>, Name of School: <?php echo $studentSchool;?></u></h4>
+<table class="table table-striped">
+<thead>
+<tr><th><center>Semester: <?php echo $studentSemester;?></center></th></tr>
+</thead>
+</table>
 <table class="table table-striped">
 <thead class="thead-inverse">
 <tr>
