@@ -4,6 +4,7 @@
         <title>Register in to Student Result Processing System</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" type="text/css" href="http://localhost/studentMarks/css/styleRegister.css"/>
+        
     </head>
     <body>
     	    
@@ -53,11 +54,8 @@
                     <input type="radio" name="gender" value="female"> 
                     <label class="gender">Female</label>
                 </p>
-				<p>
-                    <label>Profile Picture
-                    </label>
-                    <input type="file" name="file" id="file" />
-                 </p>
+				
+                  
                 
             </fieldset>
             <fieldset class="row3">

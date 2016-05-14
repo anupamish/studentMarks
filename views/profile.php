@@ -29,6 +29,43 @@ $gender = $rows['gender'];
     <meta name="author" content="">
 
     <title>Profile: <?php echo $fname." ".$lname;?></title>
+    <style type="text/css">
+	.container {
+    width: 600px;
+	}
+	.left {
+    max-width: 100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    float: left;
+	}
+	.left1 {
+    max-width: 100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    float: left;
+}
+.right {
+    
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    text-align: center;
+}
+.right1 {
+    
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    text-align: right;
+}
+	</style>
 
     <!-- Bootstrap Core CSS -->
     <link href="http://localhost/studentMarks/sideBar/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +85,43 @@ $gender = $rows['gender'];
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="../css/stylePicture.css" rel="stylesheet">
+		<script src="../js2/jquery.min.js"></script>
+		<script src="../js2/jquery.form.js"></script>
+		<script>
+		$(document).on('change', '#image_upload_file', function () {
+			var progressBar = $('.progressBar'), bar = $('.progressBar .bar'), percent = $('.progressBar .percent');
 
+			$('#image_upload_form').ajaxForm({
+			    beforeSend: function() {
+					progressBar.fadeIn();
+			        var percentVal = '0%';
+			        bar.width(percentVal)
+			        percent.html(percentVal);
+			    },
+			    uploadProgress: function(event, position, total, percentComplete) {
+			        var percentVal = percentComplete + '%';
+			        bar.width(percentVal)
+			        percent.html(percentVal);
+			    },
+			    success: function(html, statusText, xhr, $form) {		
+					obj = $.parseJSON(html);	
+					if(obj.status){		
+						var percentVal = '100%';
+						bar.width(percentVal)
+						percent.html(percentVal);
+						$("#imgArea>img").prop('src',obj.image_medium);			
+					}else{
+						alert(obj.error);
+					}
+			    },
+				complete: function(xhr) {
+					progressBar.fadeOut();			
+				}	
+			}).submit();		
+
+			});
+		</script>
 </head>
 
 <body>
@@ -114,11 +187,27 @@ $gender = $rows['gender'];
         <div id="page-wrapper">
 			<div id="container-fluid">
 			<h1><?php echo $fname." ".$lname;?></h1>
-            
-            <img align="middle" src="#" width="132" height="132">
-        
-			 <form action="profile.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
-    <table class="table table-striped">
+			<hr>
+			<br>
+			<div class="container">
+			<div class="left">
+			<div id="imgContainer">
+  <form enctype="multipart/form-data" action="../phpIncludes/image_upload_demo_submit.php" method="post" name="image_upload_form" id="image_upload_form">
+    <div id="imgArea"><?php echo'<img src="../userImages/medium/'.$username.'.jpg">';?>
+      <div class="progressBar">
+        <div class="bar"></div>
+        <div class="percent">0%</div>
+      </div>
+      <div id="imgChange"><span>Change Photo</span>
+        <input type="file" accept="image/*" name="image_upload_file" id="image_upload_file">
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<div class="left1">
+<form action="http://localhost/studentMarks/phpIncludes/editProfile.php"  method="post">
+    <table class="table">
       <tr>
         <td width="20%" align="left">First Name:</td>
         <td width="80%"><label>
@@ -129,20 +218,20 @@ $gender = $rows['gender'];
       <tr>
         <td width="20%" align="left"">Last Name:</td>
         <td width="80%"><label>
-          <input align="left" name="product_name" type="text" id="lname" size="64" value="<?php echo $lname; ?>" />
+          <input align="left" name="product_name" type="text"  size="64" value="<?php echo $lname; ?>" />
         </label></td>
       </tr>
       
       <tr>
         <td width="20%" align="left">E-Mail:</td>
         <td width="80%"><label>
-          <input name="product_name" type="text" id="email" size="64" value="<?php echo $email; ?>" />
+        <label><?php echo $email;?></label>  
         </label></td>
       </tr>
       
        <tr>
         <td align="left">Designation</td>
-        <td><select name="designation" id="designation">
+        <td><select name="designation">
           <option value="<?php echo $designation; ?>"><?php echo $designation; ?></option>
          <option value="pro">Professor
                         </option>
@@ -157,7 +246,7 @@ $gender = $rows['gender'];
       
       <tr>
         <td align="left">School</td>
-        <td><select name="designation" id="designation">
+        <td><select name="school">
           <option value="<?php echo $school; ?>"><?php echo $school; ?>
           </option>
              <option value="soe">School of Engineering
@@ -168,7 +257,7 @@ $gender = $rows['gender'];
                         </option>
                         <option value="som">School of Management
                         </option>
-                        <option value="sict">School of Information and Communication Technology
+                        <option value="soict">School of Information and Communication Technology
                         </option>
                         <option value="sol">School of Law, Justice and Governance
                         </option>
@@ -182,30 +271,29 @@ $gender = $rows['gender'];
        <tr>
         <td width="20%" align="left">Office Number:</td>
         <td width="80%"><label>
-          <input name="officeNumber" type="text" id="officeNumber" size="64" value="<?php echo $officeNumber; ?>" />
+          <input name="officeNumber" type="text" size="64" value="<?php echo $officeNumber; ?>" />
         </label></td>
       </tr>
        <tr>
         <td width="20%" align="left">Gender:</td>
         <td width="80%"><label>
-          <input name="gender" type="radio" value="<?php echo $gender; ?>" /> <?php echo $gender?></label>
+          <label><?php echo strtoupper($gender)?></label>
         </td>
       </tr>
-      <tr>
-        <td align="left">New Profile Picture:</td>
-        <td><label>
-          <input type="file" name="fileField" id="fileField"  />
-        </label></td>
-      </tr> 
-           
+            
       <tr>
         <td>&nbsp;</td>
         <td ><label>
-         <input type="submit" name="button" id="button" class="btn btn-primary" value="Make Changes" />
+         <input type="submit" name="buttonSubmit"  class="btn btn-primary" value="Make Changes" />
         </label></td>
       </tr>
     </table>
     </form>
+    <p><i>Note*:Profile picture will change on reloading the page.</i></p>
+</div>
+</div>
+<br> 
+			 
 			
 			</div>
           
@@ -221,8 +309,7 @@ $gender = $rows['gender'];
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="http://localhost/studentMarks/sideBar/js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="http://localhost/studentMarks/sideBar/js/bootstrap.min.js"></script>

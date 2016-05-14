@@ -1,8 +1,8 @@
 <?php 
 session_start(); 
 include('connectMySQL.php');   
-$password1 = $_POST['password'];
-$password2= $_POST['rpassword'];
+$password1 =md5($_POST['password']) ;
+$password2= md5($_POST['rpassword']);
 if( $password1 == $password2)
 	{
 		$allowed_hostnames = array("gbu.ac.in");
@@ -12,9 +12,9 @@ if( $password1 == $password2)
 				if (strstr($_POST['email'],$hn))
 				{
 					$good_hostname = true;
-					$sql_query="INSERT INTO users(email,password,firstName,lastName,school,designation,officeNumber,gender) VALUES ('".$_REQUEST['email']."','".$_REQUEST['password']."','".$_REQUEST['fname']."','".$_REQUEST['lname']."','".$_REQUEST['school']."','".$_REQUEST['designation']."','".$_REQUEST['officeNumber']."','".$_REQUEST['gender']."')";
-$res = $link->query($sql_query);
-					  
+					$sql_query="INSERT INTO users(email,password,firstName,lastName,school,designation,officeNumber,gender) VALUES ('".$_REQUEST['email']."','".$password1."','".$_REQUEST['fname']."','".$_REQUEST['lname']."','".$_REQUEST['school']."','".$_REQUEST['designation']."','".$_REQUEST['officeNumber']."','".$_REQUEST['gender']."')";
+					$res = $link->query($sql_query);
+					 
 					if($res){
 						header("Location:http://localhost/studentMarks/views/index.php");
 						}else
@@ -52,37 +52,39 @@ $res = $link->query($sql_query);
 ?>
 
 <?php //requires changes to make it work.
-$file_exts = array("jpg", "bmp", "jpeg", "gif", "png");
-$upload_exts = end(explode(".", $_FILES["file"]["name"]));
-if ((($_FILES["file"]["type"] == "image/gif")
-|| ($_FILES["file"]["type"] == "image/jpeg")
-|| ($_FILES["file"]["type"] == "image/png")
-|| ($_FILES["file"]["type"] == "image/pjpeg"))
-&& ($_FILES["file"]["size"] < 2000000)
-&& in_array($upload_exts, $file_exts))
-{
-if ($_FILES["file"]["error"] > 0)
-{
-echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+//code to upload
+$target_dir = "C://wamp/www/studentMarks/userImages/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+if(isset($_POST["register"])&&$_SESSION["error1"]!=1) {
+	$check = filesize($_FILES["fileToUpload"]["tmp_name"]);
+	if($check !== false) {
+		$uploadOk = 1;
+	} else {
+		$uploadOk = 0;
+	}
 }
-else
-{
-// Enter your path to upload file here
-if (file_exists("http://localhost/studentMarks/userImages/" .
-$_POST['email'].".jpg"))
-{
-echo "<div class='error'>"."(".$_FILES["file"]["name"].")".
-" already exists. "."</div>";
+// Check if file already exists
+if (file_exists($target_file)) {
+	$_SESSION['errormessage1']="Sorry, file already exists.";
+	$uploadOk = 0;
 }
-else
-{
-move_uploaded_file("http://localhost/studentMarks/userImages/" .
-$_POST['email'].".jpg");
-}
-}
-}
-else
-{
-echo "<div class='error'>Invalid file</div>";
-}
+// Allow certain file formats
+if($imageFileType != "jpg,png") {
+			$_SESSION['errormessage1']="Sorry, only JPG,PNG files are allowed.";
+			$uploadOk = 0;
+		}
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+			$_SESSION['errormessage2']="Sorry, your file was not uploaded.";
+			// if everything is ok, try to upload file
+		} else {
+			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+				$_SESSION['errormessage2']= "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+			} else {
+				$_SESSION['errormessage2']= "Sorry, there was an error uploading your file.";
+			}
+		}
 ?>
