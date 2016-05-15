@@ -215,14 +215,14 @@ $gender = $rows['gender'];
       <tr>
         <td width="20%" align="left">First Name:</td>
         <td width="80%"><label>
-          <input align="left" name="product_name" type="text" name="fname" size="64" value="<?php echo $fname; ?>" required />
+          <input align="left"  type="text" name="fname" size="64" value="<?php echo $fname; ?>"  />
         </label></td>
       </tr>
       
       <tr>
         <td width="20%" align="left"">Last Name:</td>
         <td width="80%"><label>
-          <input align="left" name="product_name" type="text"  size="64" value="<?php echo $lname; ?>" required/>
+          <input align="left" name="lname" type="text"  size="64" value="<?php echo $lname; ?>" />
         </label></td>
       </tr>
       
@@ -275,7 +275,7 @@ $gender = $rows['gender'];
        <tr>
         <td width="20%" align="left">Office Number:</td>
         <td width="80%"><label>
-          <input name="officeNumber" type="text" size="64" value="<?php echo $officeNumber; ?>" required />
+          <input name="officeNumber" type="text" size="64" value="<?php echo $officeNumber; ?>"  />
         </label></td>
       </tr>
        <tr>
