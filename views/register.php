@@ -76,7 +76,7 @@
                         </option>
                         <option value="soict">School of Information and Communication Technology
                         </option>
-                        <option value="sol">School of Law, Justice and Governance
+                        <option value="slgj">School of Law, Justice and Governance
                         </option>
                         <option value="sobsc">School of Buddhist Studies and Civilization
                         </option>

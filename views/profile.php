@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+include ("../phpIncludes/branchSchool.php");
 if(!isset($_SESSION['username'])){
 	header("location: http://localhost/studentMarks/views/index.php");
 
@@ -236,7 +237,7 @@ $gender = $rows['gender'];
        <tr>
         <td align="left">Designation</td>
         <td><select name="designation">
-          <option value="<?php echo $designation; ?>" required><?php echo $designation; ?></option>
+          <option value="<?php echo $designation; ?>" required><?php echo decideFaculty($designation); ?></option>
          <option value="pro">Professor
                         </option>
                         <option value="apro">Assistant Professor
@@ -251,7 +252,7 @@ $gender = $rows['gender'];
       <tr>
         <td align="left">School</td>
         <td><select name="school">
-          <option value="<?php echo $school; ?>" required><?php echo $school; ?>
+          <option value="<?php echo $school; ?>" required><?php echo decideSchool(strtoupper($school)); ?>
           </option>
              <option value="soe">School of Engineering
                         </option>

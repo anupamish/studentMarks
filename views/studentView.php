@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+include ("../phpIncludes/branchSchool.php");
 if(!isset($_SESSION['username'])){
 	header("location: http://localhost/studentMarks/views/index.php");
 
@@ -131,8 +132,8 @@ $semester = $rows2['semester'];
             <hr>
             <?php
 				echo "<h5> Student Name: ".$studentFirstName." ".$studentLastName;
-				echo "<h5> College: ".$college;
-				echo "<h5> Branch: ".$branch;
+				echo "<h5> College: ".decideSchool($college);
+				echo "<h5> Branch: ".decideBranch($branch);
 				echo "<h5> Semester: ".$semester;
 			?>
             <hr>
