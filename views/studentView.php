@@ -122,6 +122,11 @@ $semester = $rows2['semester'];
 
         <div id="page-wrapper">
             <div id="container-fluid">
+            <p>
+        <a href="http://localhost/studentMarks/views/student.php" class="btn btn-default ">
+          <span class="glyphicon glyphicon-circle-arrow-left"></span> All Students
+        </a>
+      	</p>
             <?php echo'<h3>Student Details: '.'<u>'.$reg.'</u></h3>'; ?>
             <hr>
             <?php

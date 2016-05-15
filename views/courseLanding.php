@@ -111,6 +111,11 @@ $courseCode= $_GET['id'];}
 
         <div id="page-wrapper">
             <div id="container-fluid">
+                <p>
+        <a href="http://localhost/studentMarks/views/landingPageMain.php" class="btn btn-default ">
+          <span class="glyphicon glyphicon-circle-arrow-left"></span> All Courses
+        </a>
+      	</p>
             <?php echo'<h3>Currently you are viewing details for: '.$courseCode.'</h3>';
             	$_SESSION['courseCode']=$courseCode;
             ?>
