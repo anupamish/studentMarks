@@ -162,19 +162,19 @@ $lname = $rows['lastName'];
           <table class="table table-striped">
           <tr>
           <td> Course Name: </td>
-          <td> <input type="text" name="courseName" length="50" required></td>
+          <td> <input type="text" name="courseName" length="50" size="35" required></td>
      	  </tr>
            <tr>
           <td> Course Code: </td>
-          <td> <input type="text" name="courseCode" length="10" required></td>
+          <td> <input type="text" name="courseCode" length="10" size="35" required></td>
      	  </tr>
            <tr>
           <td> Course Semester: </td>
-          <td> <input type="int" name="courseSemester" length="3" required></td>
+          <td> <input type="int" name="courseSemester" length="3" size="35" placeholder="Enter 0 for all students of all branches."></td>
      	  </tr>
            <tr>
           <td> Course Credits: </td>
-          <td> <input type="int" name="courseCredits" length="3" required></td>
+          <td> <input type="int" name="courseCredits" length="3" size="35" required></td>
      	  </tr>
           <tr>
           <td> <input name="submit" class="btn btn-primary" type="submit" value="Register"></td>

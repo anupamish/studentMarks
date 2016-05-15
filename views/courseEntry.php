@@ -192,7 +192,12 @@ $dateLast = $rows99['date'];
 			 $branch = $_GET['branch'];}else{
 				  $semester = '';
 				  $branch='';}
-             $sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
+			if($semester==0) {
+             $sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student";
+			}else{
+				$sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
+				
+			}
 			 global $link;
                 $result1 = $link -> query($sqlDetail);           
               if (mysqli_num_rows($result1) > 0) {
