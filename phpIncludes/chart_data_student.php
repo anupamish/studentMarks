@@ -4,7 +4,7 @@ session_start();
 $username = $_SESSION['username'];
 $regNo = $_SESSION['regNo'];
 //the SQL query to be executed
-$query = "SELECT * FROM marks WHERE regNo LIKE '%$regNo%' ORDER BY regNO";
+$query = "SELECT * FROM marks WHERE regNo LIKE '%$regNo%' AND course_code IN (SELECT course_code FROM courses WHERE username='$username') ORDER BY regNo";
 //storing the result of the executed query
 $result = $link->query($query);
 //initialize the array to store the processed data
