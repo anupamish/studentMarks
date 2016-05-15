@@ -30,6 +30,10 @@ function setGrade($totalMarks){
 <title> Class Report for <?php echo $courseCode; ?></title>
 <style type="text/css" media="print">
   @page { size: landscape; }
+  @media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
 </style>
 <!-- Bootstrap Core CSS -->
     <link href="http://localhost/studentMarks/sideBar/css/bootstrap.min.css" rel="stylesheet">

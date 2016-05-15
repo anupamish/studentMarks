@@ -31,6 +31,10 @@ $studentSemester= $rowStudentDetails['semester'];
 <title> Marksheet for <?php echo $regNo; ?></title>
 <style type="text/css" media="print">
   @page { size: landscape; }
+  @media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+}
 </style>
 <style type="text/css">
 .container {
@@ -159,14 +163,13 @@ $studentSemester= $rowStudentDetails['semester'];
 
 </tbody>
 </table>
-<br>
+
 <table class="table table-striped">
 <thead>
 <tr><th><center>CGPA: <?php echo $cgpa;?></center></th></tr>
 </thead>
 </table>
 </center>
-<br>
 <div class="container">
 <div class="left1"><h5>Issued on: <?php echo date("d-m-Y")?></h5></div>
 <div class="right1"><h5>Registrar</h5></div>
