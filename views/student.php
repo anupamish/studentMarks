@@ -12,7 +12,12 @@ $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];}
 ?>
-
+<?php
+// to perfrom search
+if (isset($_POST['search'])){
+	 $searchString= $_POST['searchQuery'];
+	}else $searchString='';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,55 +122,18 @@ td {padding:5px; }
         <div id="page-wrapper">
             <div id="container-fluid">
             <div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="table-responsive">
-        <table class="table table-striped">
-        <tbody>
+            <h3>Viewing all Students in the system.</h3>
+  <hr>
+            <table class="table table-striped">
+            <form action="" method="post">
             <tr>
-			<form action="" method="get" >
-              <td><label>School:
-                    </label></td>
-              <td><select  name="school" class = "demoInputBox">
-						<option value="">All</option>
-                        <option value="soe">School of Engineering
-                        </option>
-                        <option value="sovs">School of Vocational Studies and Applied Sciences
-                        </option>
-                        <option value="sobt">School of Biotechnology
-                        </option>
-                        <option value="som">School of Management
-                        </option>
-                        <option value="soict">School of Information and Communication Technology
-                        </option>
-                        <option value="sol">School of Law, Justice and Governance
-                        </option>
-                        <option value="sobsc">School of Buddhist Studies and Civilization
-                        </option>
-                        <option value="sohss">School of Humanities and Social Sciences
-                        </option>
-                     </select></td>
-                    <td><label>Branch:</label></td>
-              <td><select name="branch" class="demoInputBox">
-                <option value="">All</option>
-                
-                </select></td>
-                <td><label>Subject:</label></td>
-              <td><select name="subject" class="demoInputBox">
-                <option value="">All</option>
-                </select></td>
-                <td><div class= "control-group">
-                <button type="submit" class="btn btn-primary">Show</button>
-                </div></td>
-			</form>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
+            <td><input type="text" name="searchQuery" placeholder="Enter Student name or Enrollment Number to perform Search!/Perform empty search to view all." size="85"></td>
+            <td> <input type="submit" name="search" class="btn btn-primary" value="Search"></td>
+            <tr>
+            </form>
+            </table>
+            </div>
+            <hr>
 
     <table class="table table-bordered table-hover table-striped">
 
@@ -181,14 +149,33 @@ td {padding:5px; }
             </tr>
            
         </thead>
-
-        <tbody>
+		<tbody>
         <?php
 
-			if(isset($_GET['school']))
-			 $school = $_GET['school'];
-			 else $school = '';
-             $sqlTable = "SELECT regNo,stuFirstName,stuLastName,semester FROM student where college like '%$school%' ";
+        if(!isset($_POST['search'])|| $searchString==''){    
+         $sqlTable = "SELECT regNo,stuFirstName,stuLastName,semester FROM student";
+             global $link;
+                $resultTable = $link -> query($sqlTable);           
+              if (mysqli_num_rows($resultTable) > 0) {
+               while($row2 = mysqli_fetch_array($resultTable)) {
+                $reg= $row2['regNo'];
+                $sfname =$row2['stuFirstName'];
+                $slname = $row2['stuLastName'];
+				$semester = $row2['semester'];
+               echo "<tr>";
+         echo "<td>"."<center>".'<a href="http://localhost/studentMarks/views/studentView.php?reg=' . $reg . '">'.$reg.'</a>'."</center>"."</td>";
+        echo "<td>"."<center>".$sfname." ".$slname."</center>"."</td>";
+		 echo "<td>"."<center>".$semester."</center>"."</td>";
+		 
+        echo "</tr>";
+    }
+}else {
+	echo "<tr>";
+    echo "<td>"."<center>"."No rows found!"."</center>"."</td>";
+	echo "</tr>";
+      
+}}else{
+ $sqlTable = "SELECT regNo,stuFirstName,stuLastName,semester FROM student WHERE regNo='$searchString' OR stuFirstName='$searchString' OR stuLastName='$searchString'";
              global $link;
                 $resultTable = $link -> query($sqlTable);           
               if (mysqli_num_rows($resultTable) > 0) {
@@ -210,9 +197,12 @@ td {padding:5px; }
 	echo "</tr>";
       
 }
-
+}
 ?>
+
         </tbody>
+
+        
 
     </table>    
     <br>   
