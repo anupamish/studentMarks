@@ -1,6 +1,10 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+if(!isset($_SESSION['username'])){
+	header("location: http://localhost/studentMarks/views/index.php");
+
+}else{
 $username = $_SESSION['username'];
 $sql_query = "SELECT firstName, lastName FROM users WHERE email='$username'";
 $result = $link->query($sql_query);
@@ -8,7 +12,7 @@ $rows= mysqli_fetch_array($result);
 $fname = $rows['firstName'];
 $lname = $rows['lastName'];
 $regNo = $_GET['regNo'];
-$courseCode = $_SESSION['courseCode'];
+$courseCode = $_SESSION['courseCode'];}
 ?>
 <!DOCTYPE html>
 <html lang="en">

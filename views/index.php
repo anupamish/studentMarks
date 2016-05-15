@@ -1,9 +1,17 @@
+<?php 
+session_start();
+if(isset($_SESSION['username'])){
+	header("location: http://localhost/studentMarks/views/landingPageMain.php");
+	
+}
+?>
 <!DOCTYPE html>
 <html >
   <head>
     <meta charset="UTF-8">
     <title>Login into Student Result Processing System</title>   
         <link rel="stylesheet" href="http://localhost/studentMarks/css/styleLogin.css">
+       <link rel="stylesheet" href="../css/leftright.css">
   </head>
 
   <body>
@@ -18,7 +26,7 @@
 			<div class="login-form">
 			<img height="154" width="155" align="center" src="http://localhost://studentMarks/imageResources/gbu.png">
 			</div>
-            <?php session_start();?>
+           
 			<form action="http://localhost/studentMarks/phpIncludes/loginAction.php" method="post">
 			<div class="login-form">
 				<div class="control-group">
@@ -47,8 +55,8 @@
 				</div>
 				<br>
 				<div>
-				<a href="http://localhost/studentMarks/admin/index.php">Admin Login</a>
-				</div>
+				<a href="http://localhost/studentMarks/admin/index.php">Admin Login</a></div>
+				
 							</div></form>
 		</div>
 	</div>

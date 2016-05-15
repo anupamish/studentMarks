@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("../phpIncludes/connectMySQL.php");
+if(!isset($_SESSION['username'])){
+	header("location: http://localhost/studentMarks/views/index.php");
+
+}else{
 $courseCode= $_GET['id'];
 $course_query = "SELECT * FROM courses WHERE course_code='$courseCode'";
 $result = $link -> query($course_query);
@@ -14,7 +18,7 @@ function setGrade($totalMarks){
 	else if ($totalMarks>50 && $totalMarks<65) return 'B';
 	else if ($totalMarks>35 && $totalMarks<50) return 'C';
 	else return 'F';
-}
+}}
 ?>
 <html>
 <head>

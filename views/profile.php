@@ -1,6 +1,10 @@
 <?php
 session_start();
 include ("../phpIncludes/connectMySQL.php");
+if(!isset($_SESSION['username'])){
+	header("location: http://localhost/studentMarks/views/index.php");
+
+}else {}
 ?>
 <?php
 // Section of code to fetch all the profile data.
@@ -211,14 +215,14 @@ $gender = $rows['gender'];
       <tr>
         <td width="20%" align="left">First Name:</td>
         <td width="80%"><label>
-          <input align="left" name="product_name" type="text" name="fname" size="64" value="<?php echo $fname; ?>" />
+          <input align="left" name="product_name" type="text" name="fname" size="64" value="<?php echo $fname; ?>" required />
         </label></td>
       </tr>
       
       <tr>
         <td width="20%" align="left"">Last Name:</td>
         <td width="80%"><label>
-          <input align="left" name="product_name" type="text"  size="64" value="<?php echo $lname; ?>" />
+          <input align="left" name="product_name" type="text"  size="64" value="<?php echo $lname; ?>" required/>
         </label></td>
       </tr>
       
@@ -232,7 +236,7 @@ $gender = $rows['gender'];
        <tr>
         <td align="left">Designation</td>
         <td><select name="designation">
-          <option value="<?php echo $designation; ?>"><?php echo $designation; ?></option>
+          <option value="<?php echo $designation; ?>" required><?php echo $designation; ?></option>
          <option value="pro">Professor
                         </option>
                         <option value="apro">Assistant Professor
@@ -247,7 +251,7 @@ $gender = $rows['gender'];
       <tr>
         <td align="left">School</td>
         <td><select name="school">
-          <option value="<?php echo $school; ?>"><?php echo $school; ?>
+          <option value="<?php echo $school; ?>" required><?php echo $school; ?>
           </option>
              <option value="soe">School of Engineering
                         </option>
@@ -271,7 +275,7 @@ $gender = $rows['gender'];
        <tr>
         <td width="20%" align="left">Office Number:</td>
         <td width="80%"><label>
-          <input name="officeNumber" type="text" size="64" value="<?php echo $officeNumber; ?>" />
+          <input name="officeNumber" type="text" size="64" value="<?php echo $officeNumber; ?>" required />
         </label></td>
       </tr>
        <tr>

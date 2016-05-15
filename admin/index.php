@@ -1,12 +1,15 @@
 <?php 
 session_start();
+if(isset($_SESSION['username'])){
+	header("location: http://localhost/studentMarks/admin/adminLanding.php");
+}else{
 if(isset($_POST['submit'])){
 	$password = $_POST['password'];
 	if($password=='admin'){
 		$_SESSION['username']="Administrator";
 		header("Location:http://localhost/studentMarks/admin/adminLanding.php");
 	}else { $_SESSION['errMsg']="Incorrect Password";}
-}
+}}
 ?>
 <!DOCTYPE html>
 <html >
