@@ -192,7 +192,7 @@ $dateLast = $rows99['date'];
 			 $branch = $_GET['branch'];}else{
 				  $semester = '';
 				  $branch='';}
-			if($semester==0) {
+			if($semester=='0') {
              $sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student";
 			}else{
 				$sqlDetail = "SELECT regNo,stuFirstName,stuLastName FROM student where semester='$semester'AND branch='$branch'";
