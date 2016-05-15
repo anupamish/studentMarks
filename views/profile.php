@@ -198,7 +198,7 @@ $gender = $rows['gender'];
 			<div class="left">
 			<div id="imgContainer">
   <form enctype="multipart/form-data" action="../phpIncludes/image_upload_demo_submit.php" method="post" name="image_upload_form" id="image_upload_form">
-    <div id="imgArea"><?php echo'<img src="../userImages/medium/'.$username.'.jpg">';?>
+    <div id="imgArea"><?php echo'<img src="../userImages/medium/'.$username.'.jpg" alt="Image not found.".">';?>
       <div class="progressBar">
         <div class="bar"></div>
         <div class="percent">0%</div>
