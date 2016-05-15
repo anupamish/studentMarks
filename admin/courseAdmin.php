@@ -106,8 +106,6 @@ if (isset($_POST['search'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-            <div class="container">
-            <div>
             <h3>Viewing all Courses in the system.</h3>
             <hr>
             <table class="table table-striped">
@@ -209,7 +207,7 @@ if (isset($_POST['search'])){
          
          
 
-         </div> 
+        
         </div>
         <!-- /#page-wrapper -->
 

@@ -100,9 +100,7 @@ if(!isset($_SESSION['username'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-            <div class="container">
-            <div>
-       		<h3>Upload data for various Tables.</h3>
+            <h3>Upload data for various Tables.</h3>
        		<hr>
        		<h4>1. Upload data into the <u>"branch"</u> table.</h4>
        		<table class="table table-striped">
@@ -156,7 +154,6 @@ if(!isset($_SESSION['username'])){
            <br>
                   
 
-         </div> 
         </div>
         <!-- /#page-wrapper -->
 

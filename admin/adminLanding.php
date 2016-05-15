@@ -105,11 +105,9 @@ if (isset($_POST['search'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-
-            <div class="container">
+           
             <h3>Viewing all Users in the system.</h3>
             <hr>
-            
             <table class="table table-striped">
             <form action="" method="post">
             <tr>
@@ -118,7 +116,6 @@ if (isset($_POST['search'])){
             </tr>
             </form>
             </table>
-            
             <hr>
             <br>
 <table class="table  table-striped">
@@ -205,7 +202,7 @@ if (isset($_POST['search'])){
            <br>
          
          
-	</div>
+	
         </div>   
         </div>
         <!-- /#page-wrapper -->

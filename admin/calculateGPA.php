@@ -102,9 +102,7 @@ if(!isset($_SESSION['username'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-            <div class="container">
-            <div>
-       		<h3>Calculate CGPA for Students</h3>
+            <h3>Calculate CGPA for Students</h3>
        		<hr>
        		<div class="row">
     <div class="col-xs-12">
@@ -243,8 +241,7 @@ if(!isset($_SESSION['username'])){
         </tbody>
 
     </table>
-			</div>
-			</div>
+			
 			</div>
 			</div>
            <br>

@@ -111,9 +111,7 @@ if(isset($_POST['addSem'])){
 
         <div id="page-wrapper">
 			<div id="container-fluid">
-            <div class="container">
-            <div>
-       		<h3>Set Constraints.</h3>
+            <h3>Set Constraints.</h3>
        		<hr>
        		<h4>1. Change the Semester (Odd/Even) for students in the system.</h4>
        		<table class="table table-striped">
@@ -170,8 +168,7 @@ if(isset($_POST['addSem'])){
            
            <br>
                   
-</div>
-         </div> 
+ 
         </div>
         <!-- /#page-wrapper -->
 
