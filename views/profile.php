@@ -179,7 +179,7 @@ $gender = $rows['gender'];
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Class Reports</a>
+                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-bar-chart"></i> Class Reports</a>
                     </li>
                                                 <li>
                             <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
@@ -235,7 +235,7 @@ $gender = $rows['gender'];
       </tr>
       
        <tr>
-        <td align="left">Designation</td>
+        <td align="left">Designation:</td>
         <td><select name="designation">
           <option value="<?php echo $designation; ?>" required><?php echo decideFaculty($designation); ?></option>
          <option value="pro">Professor
@@ -250,7 +250,7 @@ $gender = $rows['gender'];
       </tr>
       
       <tr>
-        <td align="left">School</td>
+        <td align="left">School:</td>
         <td><select name="school">
           <option value="<?php echo $school; ?>" required><?php echo decideSchool(strtoupper($school)); ?>
           </option>
@@ -281,9 +281,16 @@ $gender = $rows['gender'];
       </tr>
        <tr>
         <td width="20%" align="left">Gender:</td>
-        <td width="80%"><label>
-          <label><?php echo strtoupper($gender)?></label>
-        </td>
+        <?php
+                        if ($gender== 'male')
+                        {
+                            echo "<td><input type='radio' name='gender' value='male' checked> Male <input type='radio' name='gender' value='female'> Female </td>";
+                        }
+                        else
+                        {
+                            echo "<td><input type='radio' name='gender' value='male'> Male <input type='radio' name='gender' value='female' checked> Female </td>";
+                        }
+                        ?>
       </tr>
             
       <tr>

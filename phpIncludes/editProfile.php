@@ -9,7 +9,8 @@ if (isset($_POST['buttonSubmit']))
 	$designation = $_POST['designation'];
 	$school = $_POST['school'];
 	$office = $_POST['officeNumber'];
-	$updateQuery ="UPDATE users SET firstName='$fname',lastName='$lname',school='$school', designation='$designation',officeNumber='$office' WHERE email='$username'";
+	$gender= $_POST['gender'];
+	$updateQuery ="UPDATE users SET firstName='$fname',lastName='$lname',school='$school', designation='$designation',officeNumber='$office', gender='$gender' WHERE email='$username'";
 	$resupdateQuery = $link->query($updateQuery);
 	if($resupdateQuery){
 		header("location: http://localhost/studentMarks/views/profile.php");

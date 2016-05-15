@@ -105,7 +105,7 @@ $dateLast = $rows99['date'];
                             <a href="http://localhost/studentMarks/views/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li  >
-                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-terminal"></i> Class Reports</a>
+                        <a href="http://localhost/studentMarks/views/activity.php"><i class="fa fa-bar-chart"></i> Class Reports</a>
                     </li>
                                                 <li>
                             <a href="http://localhost/studentMarks/views/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a></li>
